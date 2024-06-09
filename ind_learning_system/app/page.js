@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import { grey, lightGreen } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
@@ -40,8 +41,40 @@ const MainPaper = styled(Paper)(({ theme }) => ({
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     width: "80%",
-    height: "85%"
+    height: "85%",
+	display: "flex",
+    flexDirection: "column"
 }));
+
+const ContentContainer = styled('div')({
+    flexGrow: 1,
+});
+
+const NextButton = styled(Button)(({ theme }) => ({
+	margin: theme.spacing(),
+	fontSize: "18px",
+    marginTop: "20px",
+    position: "absolute",
+    right: "30px",
+	bottom: "30px"
+}));
+
+const SubmitButton = styled(Button)(({ theme }) => ({
+	margin: theme.spacing(),
+	fontSize: "18px",
+    marginTop: "20px",
+    position: "absolute",
+    right: "30px",
+	bottom: "30px"
+}));
+
+const ButtonsContainer = styled('div')({
+	marginTop: 'auto', // Pushes the buttons container to the bottom
+	display: 'flex',
+	justifyContent: 'flex-end',
+	gap: '10px' // Adjust the gap between the buttons as needed
+  });
+  
 
 export default function Home() {
   	const [questions, setQuestions] = useState([]);
@@ -83,7 +116,7 @@ export default function Home() {
 				</Typography>
 				<hr key={"horizontalLine"} width={"100%"} />
 				{questionsLoaded() && result == null ? (
-						<div>
+						<ContentContainer>
 							<div key={getCurrentQuestion()}>
 								<Question
                                     question={getCurrentQuestion()}
@@ -103,7 +136,30 @@ export default function Home() {
                                     />
                                 ))}
                             </div>
-						</div>
+
+							<ButtonsContainer>
+								{shouldShowSubmit() ? 
+									(
+										<SubmitButton
+											variant="contained"
+											// onClick={onSubmitClick}
+											color="primary"
+										>
+											Submit
+										</SubmitButton>
+									): null}
+                                {shouldShowNext() ? 
+									(
+                                    	<NextButton
+                                            variant="contained"
+                                            // onClick={onNextClick}
+                                            color="primary"
+                                        >
+                                            Next
+                                        </NextButton>
+                                    ): null}
+							</ButtonsContainer>
+						</ContentContainer>
 					) : (
 						<div>
 							

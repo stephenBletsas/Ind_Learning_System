@@ -1,6 +1,5 @@
 import React from "react";
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 
 const DivIndex = styled('div')(({ theme }) => ({
     ...theme.typography.h6,
