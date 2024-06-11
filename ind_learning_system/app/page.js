@@ -8,8 +8,10 @@ import { grey, lightGreen } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 
 import get_questions from "./api/get_questions";
+import submit_questions from "./api/submit_questions";
 import Question from "./component/Question";
 import Answer from "./component/Answer";
+import Result from "./component/Result";
 
 const theme = createTheme({
     palette: {
@@ -97,6 +99,41 @@ export default function Home() {
 		setQuestionAnswers(currentAnswers);
 	};
 
+	const onNextClick = e => {
+        if (currentQuestion === questions.length - 1) {
+            return;
+        }
+
+        console.log(currentQuestion);
+		setCurrentQuestion(currentQuestion + 1);
+    };
+
+	const onSubmitClick = async () => {
+		const current_questions = questions;
+		const current_questionAnswers = questionAnswers;
+
+		setQuestions([]);
+		setQuestionAnswers([]);
+		setCurrentQuestion(0);
+
+		// Perform the async operation
+		submit_questions(current_questions, current_questionAnswers).then(value => {
+			setResult(value);
+		});
+	};
+
+	const onTryAgainPressed = async () => {
+        // Reset state
+        setQuestions([]);
+        setQuestionAnswers([]);
+        setCurrentQuestion(0);
+        setResult(null);
+
+        get_questions().then(value => {
+			setQuestions(value);
+		});
+    };
+
 	const questionsLoaded = () => questions.length > 0;
     const getCurrentQuestion = () => questions[currentQuestion].question;
     const getCurrentAnswers = () => questions[currentQuestion].answers;
@@ -142,7 +179,7 @@ export default function Home() {
 									(
 										<SubmitButton
 											variant="contained"
-											// onClick={onSubmitClick}
+											onClick={onSubmitClick}
 											color="primary"
 										>
 											Submit
@@ -152,7 +189,7 @@ export default function Home() {
 									(
                                     	<NextButton
                                             variant="contained"
-                                            // onClick={onNextClick}
+                                            onClick={onNextClick}
                                             color="primary"
                                         >
                                             Next
@@ -160,9 +197,11 @@ export default function Home() {
                                     ): null}
 							</ButtonsContainer>
 						</ContentContainer>
+					) : result !== null ? (
+						<Result result={result} tryAgainPressed={onTryAgainPressed} />
 					) : (
 						<div>
-							
+
 						</div>
 					)
 				}
