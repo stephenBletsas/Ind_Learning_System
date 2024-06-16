@@ -10,6 +10,8 @@ const get_questions = () => {
                 const question = {
                     question: QuestionsData[i].question,
                     answers: QuestionsData[i].answers,
+                    correctAnswerIndex: QuestionsData[i].correctAnswerIndex,
+                    explanation: QuestionsData[i].explanation,
                     i
                 };
 

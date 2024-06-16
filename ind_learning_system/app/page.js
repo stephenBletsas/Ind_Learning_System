@@ -52,6 +52,14 @@ const ContentContainer = styled('div')({
     flexGrow: 1,
 });
 
+const FeedbackBox = styled(Paper)(({ theme }) => ({
+    padding: theme.spacing(2),
+    backgroundColor: grey[200],
+    marginLeft: theme.spacing(2),
+	marginRight: theme.spacing(2),
+    width: '70%'
+}));
+
 const NextButton = styled(Button)(({ theme }) => ({
 	margin: theme.spacing(),
 	fontSize: "18px",
@@ -83,29 +91,48 @@ export default function Home() {
     const [result, setResult] = useState(null);
     const [questionAnswers, setQuestionAnswers] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState(0);
+	const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [feedback, setFeedback] = useState(null);
 
 	useEffect(() => {
 		get_questions().then(value => {
+			console.log(value);
 		  setQuestions(value);
 		});
 	}, []);
 
 	const onAnswerSelected = answerId => {
-		let clickedAnswerIndex = answerId;
-		const currentAnswers = [...questionAnswers];
-		currentAnswers[currentQuestion] = clickedAnswerIndex;
-		console.log(`updating index: ${answerId}`);
-	
-		setQuestionAnswers(currentAnswers);
+		setSelectedAnswer(answerId);
 	};
 
-	const onNextClick = e => {
-        if (currentQuestion === questions.length - 1) {
-            return;
-        }
+	const onAnswerSubmit = () => {
+		const correctAnswerIndex = questions[currentQuestion].correctAnswerIndex;
+        const explanation = questions[currentQuestion].explanation;
+        const isCorrect = selectedAnswer === correctAnswerIndex;
 
-        console.log(currentQuestion);
-		setCurrentQuestion(currentQuestion + 1);
+        setQuestionAnswers(prev => {
+            const newAnswers = [...prev];
+            newAnswers[currentQuestion] = selectedAnswer;
+            return newAnswers;
+        });
+
+        setFeedback(isCorrect ? `Correct! ${explanation}` : `Incorrect. ${explanation}`);
+        setIsSubmitted(true);
+	}
+
+	const onNextClick = e => {
+		if (shouldShowNext()) {
+			setCurrentQuestion(prev => prev + 1);
+			setSelectedAnswer(null);
+			setIsSubmitted(false);
+			setFeedback(null);
+		} else if (shouldShowSubmit()) {
+			onSubmitClick();
+			setSelectedAnswer(null);
+			setIsSubmitted(false);
+			setFeedback(null);
+		}  
     };
 
 	const onSubmitClick = async () => {
@@ -137,7 +164,7 @@ export default function Home() {
 	const questionsLoaded = () => questions.length > 0;
     const getCurrentQuestion = () => questions[currentQuestion].question;
     const getCurrentAnswers = () => questions[currentQuestion].answers;
-    const isAnswerSelected = answerIndex => questionAnswers[currentQuestion] === answerIndex;
+    const isAnswerSelected = answerIndex => selectedAnswer === answerIndex;
     const shouldShowSubmit = () =>
         currentQuestion === questions.length - 1 &&
 		questionAnswers[questions.length - 1] !== undefined;
@@ -162,37 +189,46 @@ export default function Home() {
                                 />
 							</div>
 
-							<div>
-                                {getCurrentAnswers().map((currentAnswer, index) => (
-                                    <Answer
-                                        answerIndex={index}
-                                        key={getCurrentQuestion() + index}
-                                        answer={currentAnswer}
-                                        isSelected={isAnswerSelected(index)}
-                                        onAnswerSelect={onAnswerSelected}
-                                    />
-                                ))}
-                            </div>
+							<div style={{ display: 'flex', alignItems: 'flex-start' }}>
+								<div style={{ width: "30%" }}>
+									{getCurrentAnswers().map((currentAnswer, index) => (
+										<Answer
+											answerIndex={index}
+											key={getCurrentQuestion() + index}
+											answer={currentAnswer}
+											isSelected={isAnswerSelected(index)}
+											onAnswerSelect={onAnswerSelected}
+											isSubmitted={isSubmitted}
+      										isCorrect={index === questions[currentQuestion].correctAnswerIndex}
+										/>
+									))}
+								</div>
+								{isSubmitted && (
+									<FeedbackBox>
+										<Typography variant="body1">{feedback}</Typography>
+									</FeedbackBox>
+								)}
+							</div>
 
 							<ButtonsContainer>
-								{shouldShowSubmit() ? 
+								{!isSubmitted && selectedAnswer !== null ? 
 									(
 										<SubmitButton
 											variant="contained"
-											onClick={onSubmitClick}
+											onClick={onAnswerSubmit}
 											color="primary"
 										>
 											Submit
 										</SubmitButton>
 									): null}
-                                {shouldShowNext() ? 
+                                {isSubmitted && currentQuestion < questions.length ? 
 									(
                                     	<NextButton
                                             variant="contained"
                                             onClick={onNextClick}
                                             color="primary"
                                         >
-                                            Next
+                                            {currentQuestion < questions.length - 1 ? "Next" : "Complete"}
                                         </NextButton>
                                     ): null}
 							</ButtonsContainer>

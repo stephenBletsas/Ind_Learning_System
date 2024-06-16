@@ -14,7 +14,8 @@ const QuestionsData = [
     Which, inserted at line 9, will compile?
         `,
         answers: ["x2.do2();", "(Y)x2.do2();", "((Y)x2).do2();", "None of the above statements will compile."],
-        correctAnswerIndex: 2
+        correctAnswerIndex: 2,
+        explanation: `Default Feedback`
     },
     {
         question: `Given:
@@ -34,7 +35,8 @@ const QuestionsData = [
     What is the result?
     `,
         answers: ["fa fa", "fa la", "la la", "Compilation fails", "An exception is thrown at runtime"],
-        correctAnswerIndex: 1
+        correctAnswerIndex: 1,
+        explanation: `Default Feedback`
     },
     {
         question: `Given:
@@ -61,7 +63,8 @@ const QuestionsData = [
     What is the result?
     `,
         answers: ["h hn x", "hn x h", "b h hn x", "bn x h hn x", "b bn x h hn x", "bn x b h hn x", "Compilation fails"],
-        correctAnswerIndex: 2
+        correctAnswerIndex: 2,
+        explanation: `Default Feedback`
     },
     {
         question: `Given:
@@ -92,7 +95,8 @@ const QuestionsData = [
             "Compilation fails",
             "An exception is thrown at runtime"
         ],
-        correctAnswerIndex: 0
+        correctAnswerIndex: 0,
+        explanation: `Default Feedback`
     },
     {
         question: `Given:
@@ -116,7 +120,8 @@ const QuestionsData = [
             "return new ArrayList<Object>();",
             "return new ArrayList<Business>();"
         ],
-        correctAnswerIndex: 1
+        correctAnswerIndex: 1,
+        explanation: `Default Feedback`
     },
     {
         question: `
@@ -149,7 +154,8 @@ const QuestionsData = [
             `If a is false and b is true then the output is "ELSE" `,
             `If a is false and b is false then the output is "ELSE"`
         ],
-        correctAnswerIndex: 2
+        correctAnswerIndex: 2,
+        explanation: `Default Feedback`
     },
     {
         question: `
@@ -171,7 +177,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `MyOuter.MyInner mi = new MyInner();`,
             `MyInner mi = new MyOuter.MyInner();`
         ],
-        correctAnswerIndex: 1
+        correctAnswerIndex: 1,
+        explanation: `Default Feedback`
     },
     {
         question: "Primitive datatypes are allocated on stack.",
@@ -179,17 +186,20 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             "True",
             "False"
         ],
-        correctAnswerIndex: 0
+        correctAnswerIndex: 0,
+        explanation: `Default Feedback`
     },
     {
         question: "Can we create an instance of Enum outside of Enum itself?",
         answers: ["Yes", "No"],
-        correctAnswerIndex: 1
+        correctAnswerIndex: 1,
+        explanation: `Default Feedback`
     },
     {
         question: "What type of variable can be defined in an interface?",
         answers: ["public static", "private final", "public final", "static final"],
-        correctAnswerIndex: 0
+        correctAnswerIndex: 0,
+        explanation: `Default Feedback`
     },
     {
         question: `Which constructs an anonymous inner class instance?`,
@@ -199,7 +209,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `Runnable r = new Runnable { public void run(){}};`,
             `System.out.println(new Runnable() {public void run() { }});`
         ],
-        correctAnswerIndex: 3
+        correctAnswerIndex: 3,
+        explanation: `Default Feedback`
     },
     {
         question: `What will be the output of the program?
@@ -228,7 +239,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `Compilation fails.`,
             `An exception is thrown at runtime.`
         ],
-        correctAnswerIndex: 2
+        correctAnswerIndex: 2,
+        explanation: `Default Feedback`
     },
     {
         question: `Can we create an instance of Enum outside of Enum itself?`,
@@ -236,7 +248,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `Yes`,
             `No`
         ],
-        correctAnswerIndex: 1
+        correctAnswerIndex: 1,
+        explanation: `Default Feedback`
     },
     {
         question: `What is the output of below code snippet?
@@ -257,7 +270,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `It runs successfully`,
             `EnumNotDefined Exception`
         ],
-        correctAnswerIndex: 1
+        correctAnswerIndex: 1,
+        explanation: `Default Feedback`
     },
     {
         question: `What is the output of below code snippet?
@@ -276,7 +290,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `EnumNotDefined Exception`,
             `It runs successfully`,
             `Compilation Error`],
-        correctAnswerIndex: 3
+        correctAnswerIndex: 3,
+        explanation: `Default Feedback`
     },
     {
         question: `What is the output of below code snippet?
@@ -305,7 +320,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `10   10`,
             `Runtime Exception`
         ],
-        correctAnswerIndex: 0
+        correctAnswerIndex: 0,
+        explanation: `Default Feedback`
     },
     {
         question: `Which of these can be returned by the operator &?`,
@@ -315,7 +331,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `Character`,
             `Integer or Boolean`
         ],
-        correctAnswerIndex: 3
+        correctAnswerIndex: 3,
+        explanation: `Default Feedback`
     },
     {
         question: `Which of the following operators can operate on a boolean variable?
@@ -329,7 +346,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `1, 2 & 4`,
             `1, 2 & 3`
         ],
-        correctAnswerIndex: 3
+        correctAnswerIndex: 3,
+        explanation: `Default Feedback`
     },
     {
         question: `Which of these operators can skip evaluating right hand operand?`,
@@ -339,7 +357,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `&`,
             `&&`
         ],
-        correctAnswerIndex: 3
+        correctAnswerIndex: 3,
+        explanation: `Default Feedback`
     },
     {
         question: `What is the output of the following?
@@ -366,7 +385,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `The program will halt with a run time error`,
             `0 0 0 0 0`
         ],
-        correctAnswerIndex: 0
+        correctAnswerIndex: 0,
+        explanation: `Default Feedback`
     },
     {
         question: `In case of method overloading, there must be IS-A relationship?`,
@@ -374,7 +394,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `True`,
             `False`
         ],
-        correctAnswerIndex: 1
+        correctAnswerIndex: 1,
+        explanation: `Default Feedback`
     },
     {
         question: `Which three guarantee that a thread will leave the running state?
@@ -392,7 +413,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `3,4 and 7`,
             `4,5 and 7`
         ],
-        correctAnswerIndex: 1
+        correctAnswerIndex: 1,
+        explanation: `Default Feedback`
     },
     {
         question: `Which class or interface defines the wait(), notify() and notifyAll() methods?`,
@@ -402,7 +424,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `Runnable`,
             `Class`
         ],
-        correctAnswerIndex: 0
+        correctAnswerIndex: 0,
+        explanation: `Default Feedback`
     },
     {
         question: `Which two of the following methods are defined in class Thread?
@@ -418,7 +441,8 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `2 and 4`,
             `3 and 4`
         ],
-        correctAnswerIndex: 0
+        correctAnswerIndex: 0,
+        explanation: `Default Feedback`
     }, {
         question: `What is the output of the following program?
 
@@ -439,14 +463,16 @@ MyOuter.MyInner mi = m.new MyOuter.MyInner();`,
             `Compilation error at 7 and 8`,
             `Compilation error at 8, about can't override the value of "Test"`
         ],
-        correctAnswerIndex: 0
+        correctAnswerIndex: 0,
+        explanation: `Default Feedback`
     }, {
         question: `Is HashMap synchronized?`,
         answers: [
             `True`,
             `False`
         ],
-        correctAnswerIndex: 1
+        correctAnswerIndex: 1,
+        explanation: `Default Feedback`
     }, {
         question: `If you were to store objects into an implementation of List
 which happens only once in the entire life cycle of the product, but reading these objects inside
@@ -456,7 +482,8 @@ the List implementation is quite high, then which one would you use?`,
             `LinkedList`,
             `ArrayList`
         ],
-        correctAnswerIndex: 2
+        correctAnswerIndex: 2,
+        explanation: `Default Feedback`
     }, {
         question: `What is the data structure that a Set uses to store its elements?`,
         answers: [
@@ -465,7 +492,8 @@ the List implementation is quite high, then which one would you use?`,
             `Map`,
             `ArrayList`
         ],
-        correctAnswerIndex: 2
+        correctAnswerIndex: 2,
+        explanation: `Default Feedback`
     }, {
         question: `Enumeration is an interface that helps to iterate over collection,
 but it can't remove any element the collection it is iterating?`,
@@ -473,7 +501,8 @@ but it can't remove any element the collection it is iterating?`,
             `True`,
             `False`
         ],
-        correctAnswerIndex: 1
+        correctAnswerIndex: 1,
+        explanation: `Default Feedback`
     }, {
         question: `x = x + 1 is comparable to which one of the given choices in Java?`,
         answers: [
@@ -482,7 +511,8 @@ but it can't remove any element the collection it is iterating?`,
             `x = x - 1`,
             `Non of the above.`
         ],
-        correctAnswerIndex: 1
+        correctAnswerIndex: 1,
+        explanation: `Default Feedback`
     }
 ];
 

@@ -5,31 +5,34 @@ import { styled } from '@mui/material/styles';
 
 
 const AnswerBody = styled('div')(({ theme }) => ({
-    width: "35%",
+    // width: "80%",
     margin: "15px 5px 5px 10px",
     userSelect: "none"
 }));
 
-const AnswerTypography = styled('div')(({ theme }) => ({
+const AnswerTypography = styled('div')(({ theme, correct, incorrect }) => ({
     ...theme.typography.p,
+    ...(correct && { color: theme.palette.success.light }),
+    ...(incorrect && { color: theme.palette.error.light }),
     backgroundColor: theme.palette.background.paper,
     fontSize: "20px",
     display: "inline-block",
     cursor: "pointer"
 }));
 
-const FormRadio = ({ answerIndex, isSelected, onAnswerClick }) => {
+const FormRadio = ({ answerIndex, isSelected, onAnswerClick, disabled }) => {
     return (
         <Radio 
             id={answerIndex.toString()}
             color={"primary"}
             checked={isSelected}
             onClick={onAnswerClick}
+            disabled={disabled}
         />
     )
 }
 
-const Answer = ({ answerIndex, isSelected, answer, onAnswerSelect }) => {
+const Answer = ({ answerIndex, isSelected, answer, onAnswerSelect, isSubmitted, isCorrect }) => {
   const onAnswerClick = (e) => {
     e.preventDefault();
     onAnswerSelect(answerIndex);
@@ -37,30 +40,22 @@ const Answer = ({ answerIndex, isSelected, answer, onAnswerSelect }) => {
 
   return (
     <AnswerBody>
-        {/* <Radio
-            id={answerIndex.toString()}
-            color={"primary"}
-            checked={isSelected}
-            onClick={onAnswerClick}
-            label={answer}
-        /> */}
         <FormControlLabel 
             control={
                 <FormRadio  
                     answerIndex={answerIndex}
                     isSelected={isSelected}
                     onAnswerClick={onAnswerClick}
+                    disabled={isSubmitted}
                 />
             } 
             label={
-                <AnswerTypography>
+                <AnswerTypography correct={isSelected && isSubmitted && isCorrect} incorrect={isSelected && isSubmitted && !isCorrect}>
                     {answer}
+                    {console.log(isSubmitted)}
                 </AnswerTypography>
             } 
         />
-        {/* <AnswerTypography component="p" onClick={onAnswerClick}>
-            {answer}
-        </AnswerTypography> */}
     </AnswerBody>
   );
 };
