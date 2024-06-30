@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from "react";
+import { useRef } from 'react';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import { grey, lightGreen } from '@mui/material/colors';
+import { grey, lightGreen, blue } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 
 import get_questions from "./api/get_questions";
@@ -12,13 +13,17 @@ import submit_questions from "./api/submit_questions";
 import Question from "./component/Question";
 import Answer from "./component/Answer";
 import Result from "./component/Result";
+import FeedbackBox from "./component/Feedback";
+import Header from "./component/Header";
+
+const STARTING_TIME = 300000;
 
 const theme = createTheme({
     palette: {
         primary: {
-            light: lightGreen[200],
-            main: lightGreen[400],
-            dark: lightGreen[600],
+            light: blue[300],
+            main: blue[500],
+            dark: blue[700],
             contrastText: "#fff"
         },
         secondary: {
@@ -52,18 +57,12 @@ const ContentContainer = styled('div')({
     flexGrow: 1,
 });
 
-const FeedbackBox = styled(Paper)(({ theme }) => ({
-    padding: theme.spacing(2),
-    backgroundColor: grey[200],
-    marginLeft: theme.spacing(2),
-	marginRight: theme.spacing(2),
-    width: '70%'
-}));
-
 const NextButton = styled(Button)(({ theme }) => ({
 	margin: theme.spacing(),
+	borderRadius: "16px",
 	fontSize: "18px",
     marginTop: "20px",
+	padding: "14px 64px",
     position: "absolute",
     right: "30px",
 	bottom: "30px"
@@ -71,8 +70,10 @@ const NextButton = styled(Button)(({ theme }) => ({
 
 const SubmitButton = styled(Button)(({ theme }) => ({
 	margin: theme.spacing(),
+	borderRadius: "16px",
 	fontSize: "18px",
     marginTop: "20px",
+	padding: "14px 64px",
     position: "absolute",
     right: "30px",
 	bottom: "30px"
@@ -94,6 +95,9 @@ export default function Home() {
 	const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [feedback, setFeedback] = useState(null);
+	const [timeRemaining, setTimeRemaining] = useState(STARTING_TIME); // e.g., 5 minutes
+	const [timerExpired, setTimerExpired] = useState(false);
+	const timerRef = useRef(null);
 
 	useEffect(() => {
 		get_questions().then(value => {
@@ -101,6 +105,20 @@ export default function Home() {
 		  setQuestions(value);
 		});
 	}, []);
+
+	useEffect(() => {
+		if (timeRemaining > 0) {
+			console.log(timeRemaining)
+			timerRef.current = setInterval(() => {
+				setTimeRemaining(prev => prev - 1);
+		  	}, 1000);
+
+		  	return () => clearInterval(timerRef.current);
+		} else {
+		  	setTimerExpired(true);
+		  	onSubmitClick();
+		}
+	}, [timeRemaining]);
 
 	const onAnswerSelected = answerId => {
 		setSelectedAnswer(answerId);
@@ -117,7 +135,7 @@ export default function Home() {
             return newAnswers;
         });
 
-        setFeedback(isCorrect ? `Correct! ${explanation}` : `Incorrect. ${explanation}`);
+        setFeedback(explanation);
         setIsSubmitted(true);
 	}
 
@@ -136,6 +154,9 @@ export default function Home() {
     };
 
 	const onSubmitClick = async () => {
+		// Clear the timer
+		clearInterval(timerRef.current);
+
 		const current_questions = questions;
 		const current_questionAnswers = questionAnswers;
 
@@ -152,19 +173,25 @@ export default function Home() {
 	const onTryAgainPressed = async () => {
         // Reset state
         setQuestions([]);
+		setResult(null);
         setQuestionAnswers([]);
         setCurrentQuestion(0);
-        setResult(null);
+		setSelectedAnswer(null);
+		setIsSubmitted(false);
+		setFeedback(null);
 
         get_questions().then(value => {
 			setQuestions(value);
 		});
+
+		setTimeRemaining(STARTING_TIME);
     };
 
 	const questionsLoaded = () => questions.length > 0;
     const getCurrentQuestion = () => questions[currentQuestion].question;
     const getCurrentAnswers = () => questions[currentQuestion].answers;
     const isAnswerSelected = answerIndex => selectedAnswer === answerIndex;
+	const isAnswerCorrect = () => isSubmitted && selectedAnswer === questions[currentQuestion].correctAnswerIndex;
     const shouldShowSubmit = () =>
         currentQuestion === questions.length - 1 &&
 		questionAnswers[questions.length - 1] !== undefined;
@@ -175,10 +202,11 @@ export default function Home() {
 	return (
 		<ThemeProvider theme={theme}>
 			<MainPaper elevation={3} square={false}>
-				<Typography variant="h4" gutterBottom>
+				<Typography variant="h4" gutterBottom marginBottom={"24px"}>
 					Individual Learning System
 				</Typography>
 				<hr key={"horizontalLine"} width={"100%"} />
+				<Header timeRemaining={timeRemaining} />
 				{questionsLoaded() && result == null ? (
 						<ContentContainer>
 							<div key={getCurrentQuestion()}>
@@ -204,9 +232,7 @@ export default function Home() {
 									))}
 								</div>
 								{isSubmitted && (
-									<FeedbackBox>
-										<Typography variant="body1">{feedback}</Typography>
-									</FeedbackBox>
+									<FeedbackBox feedback={feedback} isCorrect={isAnswerCorrect()}/>
 								)}
 							</div>
 

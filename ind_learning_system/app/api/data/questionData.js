@@ -15,7 +15,7 @@ const QuestionsData = [
         `,
         answers: ["x2.do2();", "(Y)x2.do2();", "((Y)x2).do2();", "None of the above statements will compile."],
         correctAnswerIndex: 2,
-        explanation: `Default Feedback`
+        explanation: "The answer `((Y)x2).do2();` will compile because `x2` is declared as type `X` but is actually an instance of `Y`. The cast `(Y)x2` converts `x2` to type `Y`, allowing access to `do2()` which is defined in `Y`."
     },
     {
         question: `Given:
@@ -36,7 +36,7 @@ const QuestionsData = [
     `,
         answers: ["fa fa", "fa la", "la la", "Compilation fails", "An exception is thrown at runtime"],
         correctAnswerIndex: 1,
-        explanation: `Default Feedback`
+        explanation: "The result `fa la` is correct because `sing()` is a static method. For `t.sing()`, it calls `Tenor.sing()`, returning \"fa\". For `s.sing()`, it calls `Singer.sing()` since static methods are not overridden but hidden, returning \"la\"."
     },
     {
         question: `Given:
