@@ -260,7 +260,7 @@ export default function Home() {
 							</ButtonsContainer>
 						</ContentContainer>
 					) : result !== null ? (
-						<Result result={result} tryAgainPressed={onTryAgainPressed} />
+						<Result result={result}/>
 					) : (
 						<div>
 

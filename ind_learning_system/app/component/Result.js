@@ -1,8 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
-import successSvg from '@/assets/success.svg';
-import failureSvg from '@/assets/failure.svg';
 
 
 const SvgContainer = styled('div')({
@@ -27,12 +25,17 @@ const ResultParagraph = styled('pre')({
     textAlign: "center"
 });
 
-const ResetButton = styled(Button)({
-    display: "block",
-    margin: "60px auto"
-});
+const Typo = styled('div')(({ theme }) => ({
+    ...theme.typography.h4,
+    textAlign: "center",
+    marginBottom: "24px",
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(1),
+    fontWeight: "bold",
+    color: theme.palette.secondary.dark
+}));
 
-const Result = ({ result, tryAgainPressed }) => {
+const Result = ({ result }) => {
     const getSuccessMessage = () => {
         return `Passed!\n ${result.correctAnswers} / ${result.questionsLength} correct`;
     };
@@ -43,21 +46,12 @@ const Result = ({ result, tryAgainPressed }) => {
 
     return (
         <SvgContainer>
-            {/* <ResultSVG
-                src={result.pass ? successSvg : failureSvg}
-                alt="logo"
-            /> */}
+            <Typo>
+                Thank you for participating in the experiment!
+            </Typo>
             <ResultParagraph>
                 {result.pass ? getSuccessMessage() : getFailMessage()}
             </ResultParagraph>
-
-            <ResetButton
-                variant="contained"
-                onClick={tryAgainPressed}
-                color="secondary"
-            >
-                Try Again
-            </ResetButton>
         </SvgContainer>
     );
 };
