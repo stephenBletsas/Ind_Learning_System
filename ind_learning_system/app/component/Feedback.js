@@ -30,7 +30,7 @@ const Content = styled('div')(({ theme }) => ({
 
 const FeedbackBox = ({ feedback, isCorrect }) => {
     return (
-        <FeedBox correct={isCorrect}>
+        <FeedBox correct={isCorrect ? isCorrect.toString() : undefined}>
             {isCorrect && <Title>{"Great Job!"}</Title>}
             {!isCorrect && <Title>{"You'll get in next time!"}</Title>}
 			<Content>{feedback}</Content>

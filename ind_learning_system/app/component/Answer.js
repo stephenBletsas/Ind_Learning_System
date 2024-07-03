@@ -52,7 +52,6 @@ const Answer = ({ answerIndex, isSelected, answer, onAnswerSelect, isSubmitted, 
             label={
                 <AnswerTypography correct={isSelected && isSubmitted && isCorrect} incorrect={isSelected && isSubmitted && !isCorrect}>
                     {answer}
-                    {console.log(isSubmitted)}
                 </AnswerTypography>
             } 
         />

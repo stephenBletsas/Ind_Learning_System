@@ -88,16 +88,18 @@ const ButtonsContainer = styled('div')({
   
 
 export default function Home() {
-  	const [questions, setQuestions] = useState([]);
-    const [result, setResult] = useState(null);
-    const [questionAnswers, setQuestionAnswers] = useState([]);
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-	const [selectedAnswer, setSelectedAnswer] = useState(null);
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [feedback, setFeedback] = useState(null);
-	const [timeRemaining, setTimeRemaining] = useState(STARTING_TIME); // e.g., 5 minutes
-	const [timerExpired, setTimerExpired] = useState(false);
+  	const [questions, setQuestions] = useState([]);	// Question objects
+    const [result, setResult] = useState(null);	// Displays the final "results" page
+    const [questionAnswers, setQuestionAnswers] = useState([]);	// Stored set of user's answers to questions
+    const [currentQuestion, setCurrentQuestion] = useState(0);	// Index of current question
+	const [selectedAnswer, setSelectedAnswer] = useState(null);	// Answer user has currently selected
+    const [isSubmitted, setIsSubmitted] = useState(false);	// Has the user submitted an answer. i.e., are they in feedback mode
+    const [feedback, setFeedback] = useState(null);	// Feedback text to be displayed
+	const [timeRemaining, setTimeRemaining] = useState(STARTING_TIME); // Time remaining for session. e.g., 5 minutes
 	const timerRef = useRef(null);
+	const [questionStartTime, setQuestionStartTime] = useState(null);	// Measures duration to answer question
+	const [feedbackStartTime, setFeedbackStartTime] = useState(null);	// Measures duration to feedback for each question
+	const [questionFeedbackDurations, setQuestionFeedbackDurations] = useState([]);
 
 	useEffect(() => {
 		get_questions().then(value => {
@@ -107,8 +109,13 @@ export default function Home() {
 	}, []);
 
 	useEffect(() => {
+		if (questionsLoaded()) {
+		  setQuestionStartTime(Date.now());
+		}
+	  }, [currentQuestion, questions]);
+
+	useEffect(() => {
 		if (timeRemaining > 0) {
-			console.log(timeRemaining)
 			timerRef.current = setInterval(() => {
 				setTimeRemaining(prev => prev - 1);
 		  	}, 1000);
@@ -129,6 +136,18 @@ export default function Home() {
         const explanation = questions[currentQuestion].explanation;
         const isCorrect = selectedAnswer === correctAnswerIndex;
 
+		// Calculate the time taken for the current question
+		const timeTaken = (Date.now() - questionStartTime) / 1000;
+		// Update the durations array with the question duration
+		setQuestionFeedbackDurations(prev => {
+			const newDurations = [...prev];
+			newDurations[currentQuestion] = { questionDuration: timeTaken, feedbackDuration: null };
+			return newDurations;
+		});
+
+		// Start the feedback timer
+		setFeedbackStartTime(Date.now());
+
         setQuestionAnswers(prev => {
             const newAnswers = [...prev];
             newAnswers[currentQuestion] = selectedAnswer;
@@ -140,11 +159,23 @@ export default function Home() {
 	}
 
 	const onNextClick = e => {
+		// Calculate the time taken for feedback
+		const feedbackTimeTaken = (Date.now() - feedbackStartTime) / 1000;
+		// Update the durations array with the feedback duration
+		setQuestionFeedbackDurations(prev => {
+			const newDurations = [...prev];
+			newDurations[currentQuestion].feedbackDuration = feedbackTimeTaken;
+			return newDurations;
+		});
+		
 		if (shouldShowNext()) {
 			setCurrentQuestion(prev => prev + 1);
 			setSelectedAnswer(null);
 			setIsSubmitted(false);
 			setFeedback(null);
+
+			setQuestionStartTime(Date.now()); // Restart the timer for the next question
+			setFeedbackStartTime(null); // Reset feedback start time
 		} else if (shouldShowSubmit()) {
 			onSubmitClick();
 			setSelectedAnswer(null);
@@ -163,6 +194,8 @@ export default function Home() {
 		setQuestions([]);
 		setQuestionAnswers([]);
 		setCurrentQuestion(0);
+
+		console.log(questionFeedbackDurations);
 
 		// Perform the async operation
 		submit_questions(current_questions, current_questionAnswers).then(value => {

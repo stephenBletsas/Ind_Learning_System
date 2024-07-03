@@ -23,8 +23,6 @@ const submit_questions = (questions, questionAnswers) => {
                 pass
             };
 
-            console.log(result);
-
             resolve(result);
         }, 1000);
     });
