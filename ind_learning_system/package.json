@@ -14,11 +14,15 @@
     "@mui/icons-material": "^5.15.19",
     "@mui/material": "^5.15.19",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "@nanostores/react": "ai/react",
+    "ai": "^3.2.16",
     "next": "14.2.3",
-    "react": "^18",
+    "openai": "^4.52.3",
+    "react": "^18.3.1",
     "react-dom": "^18",
     "react-router-dom": "^6.24.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "eslint": "^8",
