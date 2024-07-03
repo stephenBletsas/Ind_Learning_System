@@ -101,6 +101,8 @@ export default function Home() {
 	const [feedbackStartTime, setFeedbackStartTime] = useState(null);	// Measures duration to feedback for each question
 	const [questionFeedbackDurations, setQuestionFeedbackDurations] = useState([]);
 
+	const [mode, setMode] = useState('system1');
+
 	useEffect(() => {
 		get_questions().then(value => {
 			console.log(value);
@@ -113,6 +115,15 @@ export default function Home() {
 		  setQuestionStartTime(Date.now());
 		}
 	  }, [currentQuestion, questions]);
+
+	useEffect(() => {
+		const query = new URLSearchParams(window.location.search);
+		console.log(query);
+		const modeQuery = query.get('mode');
+		if (modeQuery === 'system1' || modeQuery === 'system2') {
+		  setMode(modeQuery);
+		}
+	}, []);
 
 	useEffect(() => {
 		if (timeRemaining > 0) {
@@ -236,7 +247,7 @@ export default function Home() {
 		<ThemeProvider theme={theme}>
 			<MainPaper elevation={3} square={false}>
 				<Typography variant="h4" gutterBottom marginBottom={"24px"}>
-					Individual Learning System
+					Individual Learning System: {mode}
 				</Typography>
 				<hr key={"horizontalLine"} width={"100%"} />
 				<Header timeRemaining={timeRemaining} />
