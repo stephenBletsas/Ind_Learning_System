@@ -34,7 +34,7 @@ const QuestionsData = [
 
     What is the result?
     `,
-        answers: ["fa fa", "fa la", "la la", "Compilation fails", "An exception is thrown at runtime"],
+        answers: ["fa fa", "fa la", "la la", "Compilation fails"],
         correctAnswerIndex: 1,
         explanation: "The result `fa la` is correct because `sing()` is a static method. For `t.sing()`, it calls `Tenor.sing()`, returning \"fa\". For `s.sing()`, it calls `Singer.sing()` since static methods are not overridden but hidden, returning \"la\"."
     },
@@ -62,7 +62,7 @@ const QuestionsData = [
 
     What is the result?
     `,
-        answers: ["h hn x", "hn x h", "b h hn x", "bn x h hn x", "b bn x h hn x", "bn x b h hn x", "Compilation fails"],
+        answers: ["h hn x", "hn x h", "b h hn x", "bn x h hn x"],
         correctAnswerIndex: 2,
         explanation: `Default Feedback`
     },
@@ -91,9 +91,7 @@ const QuestionsData = [
             "furry bray",
             "stripes bray",
             "furry generic noise",
-            "stripes generic noise",
-            "Compilation fails",
-            "An exception is thrown at runtime"
+            "stripes generic noise"
         ],
         correctAnswerIndex: 0,
         explanation: `Default Feedback`
