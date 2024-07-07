@@ -12,7 +12,7 @@ const FeedBox = styled(Paper)(({ theme }) => ({
 	marginRight: theme.spacing(2),
 	marginTop: "-12px",
     width: '70%',
-    height: '30vh',
+    height: '40vh',
     maxHeight: '40vh',
 }));
 
