@@ -12,7 +12,7 @@ const FeedBox = styled(Paper)(({ theme }) => ({
 	marginRight: theme.spacing(2),
 	marginTop: "-12px",
     width: '70%',
-    height: '40vh',
+    height: '30vh',
     maxHeight: '40vh',
 }));
 
@@ -24,6 +24,7 @@ const MessageBox = styled('div')(({ theme }) => ({
 
 const AIFeedbackBox = ({ status, messages, input, submitMessage, handleInputChange }) => {
     useEffect(() => {
+        console.log(messages);
         scrollToBottom("scrollable_div");
     }, [messages]);
 
@@ -37,7 +38,7 @@ const AIFeedbackBox = ({ status, messages, input, submitMessage, handleInputChan
         <FeedBox>
             <MessageBox id="scrollable_div">
                 {messages.map((m, index) => (
-                    <AIMessage m={m} key={index}/>
+                    index !== 0 && <AIMessage m={m} key={index}/>
                 ))}
             </MessageBox>
 										

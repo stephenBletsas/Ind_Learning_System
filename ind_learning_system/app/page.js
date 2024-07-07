@@ -114,7 +114,7 @@ export default function Home() {
 
 	const [isAI, setIsAI] = useState(false);
 
-	const { status, messages, input, submitMessage, handleInputChange, setMessages } = useAssistant({ api: '/api/assistant' });
+	const { status, messages, input, submitMessage, handleInputChange, setMessages, append } = useAssistant({ api: '/api/assistant' });
 	const [storeMessages, setStoreMessages] = useState([]);
 
 	useEffect(() => {
@@ -152,6 +152,16 @@ export default function Home() {
 		}
 	}, [timeRemaining]);
 
+	const AIQuestionSubmissionString = () => {
+		const correct_index = questions[currentQuestion].correctAnswerIndex;
+		return `
+			Question: ${getCurrentQuestion()},
+			Correct Answer: ${questions[currentQuestion]["answers"][correct_index]},
+			User Answer: ${questions[currentQuestion]["answers"][selectedAnswer]}.
+			Provide feedback, including hints and explanations to help the student understand their answer and the correct solution without directly giving away the answer.
+		`
+	}
+
 	const onAnswerSelected = answerId => {
 		setSelectedAnswer(answerId);
 	};
@@ -169,6 +179,13 @@ export default function Home() {
 			newDurations[currentQuestion] = { questionDuration: timeTaken, feedbackDuration: null };
 			return newDurations;
 		});
+
+		if (isAI) {
+			append({
+				role: 'user',
+				content: AIQuestionSubmissionString(),
+			});
+		}		
 
 		// Start the feedback timer
 		setFeedbackStartTime(Date.now());
