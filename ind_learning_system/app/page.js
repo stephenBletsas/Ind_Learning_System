@@ -39,8 +39,8 @@ const theme = createTheme({
 		amber: {
 			light: amber[200],
             main: amber[400],
-            dark: amber[700],
-            contrastText: "#fff"
+            dark: amber[500],
+            contrastText: "#000"
 		}
     }
 });
