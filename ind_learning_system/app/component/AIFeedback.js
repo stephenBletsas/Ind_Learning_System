@@ -18,8 +18,19 @@ const FeedBox = styled(Paper)(({ theme }) => ({
 
 const MessageBox = styled('div')(({ theme }) => ({
     overflow: 'scroll',
+    display: 'flex',
+    flexDirection: 'column',
     height: '85%',
     marginBottom: "8px",
+
+    /* Hide scrollbar for Chrome, Safari, and Opera */
+    '&::-webkit-scrollbar-track': {
+        display: 'none'
+    },
+
+    /* Hide scrollbar for IE, Edge, and Firefox */
+    '-ms-overflow-style': 'none',  /* IE and Edge */
+    scrollbarWidth: 'none',  /* Firefox */
 }));
 
 const AIFeedbackBox = ({ status, messages, input, submitMessage, handleInputChange }) => {
