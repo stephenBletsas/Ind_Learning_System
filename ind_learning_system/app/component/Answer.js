@@ -2,6 +2,10 @@ import React from 'react';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { styled } from '@mui/material/styles';
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css'; // Import KaTeX CSS for styling
 
 
 const AnswerBody = styled('div')(({ theme }) => ({
@@ -51,7 +55,12 @@ const Answer = ({ answerIndex, isSelected, answer, onAnswerSelect, isSubmitted, 
             } 
             label={
                 <AnswerTypography correct={isSelected && isSubmitted && isCorrect} incorrect={isSelected && isSubmitted && !isCorrect}>
-                    {answer}
+                    <ReactMarkdown
+                            remarkPlugins={[remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                    >
+                        {answer}
+                    </ReactMarkdown>
                 </AnswerTypography>
             } 
         />

@@ -14,9 +14,10 @@ const MessageBox = styled(Paper)(({ theme, isAss }) => ({
     marginLeft: theme.spacing(2),
 	marginRight: theme.spacing(2),
     marginBottom: theme.spacing(2),
-    // maxWidth: '55%',
-    width: '55%',
-    position: 'relative'
+    maxWidth: '75%',
+    // width: '95%',
+    position: 'relative',
+    ...theme.typography.h6,
 }));
 
 const MessageContainer = styled('div')(({ theme }) => ({
@@ -44,12 +45,15 @@ const AIMessage = ({ m }) => {
         <MessageContainer>
             <MessageBox isAss={m.role === 'assistant'}>
                 <div key={m.id}>
-                    <BoldText>{`${m.role}: `}</BoldText>
-                    {m.role !== 'data' && <ReactMarkdown
-                        children={m.content}
-                        remarkPlugins={[remarkMath]}
-                        rehypePlugins={[rehypeKatex]}
-                    />}
+                    {/* <BoldText>{`${m.role}: `}</BoldText> */}
+                    {m.role !== 'data' && 
+                        <ReactMarkdown
+                            remarkPlugins={[remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                        >
+                            {m.content}
+                        </ReactMarkdown>
+                    }
                     
                     {m.role === 'data' && (
                         <>

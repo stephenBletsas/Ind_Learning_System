@@ -1,5 +1,9 @@
 import React from "react";
 import { styled } from '@mui/material/styles';
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css'; // Import KaTeX CSS for styling
 
 const DivIndex = styled('div')(({ theme }) => ({
     ...theme.typography.h5,
@@ -30,7 +34,14 @@ const Question = ({ questionIndex, questionsLength, question }) => {
             <DivIndex>
                 {`Question ${questionIndex}/${questionsLength}`}{" "}
             </DivIndex>
-            <QuestionBody>{question}</QuestionBody>
+            <QuestionBody>
+                <ReactMarkdown
+                    remarkPlugins={[remarkMath]}
+                    rehypePlugins={[rehypeKatex]}
+                >
+                    {question}
+                </ReactMarkdown>
+            </QuestionBody>
         </QuestionContainer>
     );
 }
