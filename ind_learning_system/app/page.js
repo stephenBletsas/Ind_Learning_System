@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import { grey, lightGreen, blue, amber } from '@mui/material/colors';
+import { grey, blue, amber } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 
 import get_questions from "./api/get_questions";
@@ -15,6 +15,7 @@ import Answer from "./component/Answer";
 import Result from "./component/Result";
 import FeedbackBox from "./component/Feedback";
 import Header from "./component/Header";
+import CircularLoading from "./component/CircularLoading";
 
 import { Message, useAssistant } from 'ai/react';
 import AIFeedbackBox from "./component/AIFeedback";
@@ -47,10 +48,11 @@ const theme = createTheme({
 const MainPaper = styled(Paper)(({ theme }) => ({
 	userSelect: "none",
     overflowX: "hidden",
-    paddingTop: theme.spacing(4),
-    paddingBottom: "70px",
-	paddingLeft: "24px",
-	paddingRight: "24px",
+    // paddingTop: theme.spacing(4),
+	padding: "2%",
+    // paddingBottom: "70px",
+	// paddingLeft: "24px",
+	// paddingRight: "24px",
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -59,7 +61,8 @@ const MainPaper = styled(Paper)(({ theme }) => ({
     width: "80%",
     height: "85%",
 	display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+	borderRadius: "16px",
 }));
 
 const ContentContainer = styled('div')({
@@ -96,6 +99,15 @@ const ButtonsContainer = styled('div')({
 	justifyContent: 'flex-end',
 	gap: '10px' // Adjust the gap between the buttons as needed
   });
+
+const DivIndex = styled('div')(({ theme }) => ({
+    ...theme.typography.h6,
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(1),
+    fontWeight: "bold",
+    paddingTop: "12px",
+	color: theme.palette.secondary.dark
+}));
   
 
 export default function Home() {
@@ -242,8 +254,8 @@ export default function Home() {
 		const current_questionAnswers = questionAnswers;
 
 		setQuestions([]);
-		setQuestionAnswers([]);
-		setCurrentQuestion(0);
+		// setQuestionAnswers([]);
+		// setCurrentQuestion(0);
 
 		console.log(questionFeedbackDurations);
 		console.log(storeMessages);
@@ -304,6 +316,9 @@ export default function Home() {
 							<div>
 								<div style={{ display: 'flex', alignItems: 'flex-start', height: '90%' }}>
 									<div style={{ width: "30%" }}>
+										<DivIndex>
+											{`Choose Answer`}{" "}
+										</DivIndex>
 										{getCurrentAnswers().map((currentAnswer, index) => (
 											<Answer
 												answerIndex={index}
@@ -348,6 +363,7 @@ export default function Home() {
                                             variant="contained"
                                             onClick={onNextClick}
                                             color="primary"
+											disabled={status !== 'awaiting_message'}
                                         >
                                             {currentQuestion < questions.length - 1 ? "Next" : "Complete"}
                                         </NextButton>
@@ -355,11 +371,14 @@ export default function Home() {
 							</ButtonsContainer>
 						</ContentContainer>
 					) : result !== null ? (
-						<Result result={result}/>
+						<Result 
+							result={result}
+							questionAnswers={questionAnswers}
+							storeMessages={storeMessages}
+							questionFeedbackDurations={questionFeedbackDurations}
+						/>
 					) : (
-						<div>
-
-						</div>
+						<CircularLoading key={"loadingCircle"}/>
 					)
 				}
 			</MainPaper>
