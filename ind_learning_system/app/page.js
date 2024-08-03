@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import { grey, lightGreen, blue } from '@mui/material/colors';
+import { grey, blue, amber } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 
 import get_questions from "./api/get_questions";
@@ -15,6 +15,10 @@ import Answer from "./component/Answer";
 import Result from "./component/Result";
 import FeedbackBox from "./component/Feedback";
 import Header from "./component/Header";
+import CircularLoading from "./component/CircularLoading";
+
+import { Message, useAssistant } from 'ai/react';
+import AIFeedbackBox from "./component/AIFeedback";
 
 const STARTING_TIME = 300000;
 
@@ -31,17 +35,24 @@ const theme = createTheme({
             main: grey[500],
             dark: grey[700],
             contrastText: "#fff"
-        }
+        },
+		amber: {
+			light: amber[200],
+            main: amber[400],
+            dark: amber[700],
+            contrastText: "#fff"
+		}
     }
 });
 
 const MainPaper = styled(Paper)(({ theme }) => ({
 	userSelect: "none",
     overflowX: "hidden",
-    paddingTop: theme.spacing(4),
-    paddingBottom: "70px",
-	paddingLeft: "24px",
-	paddingRight: "24px",
+    // paddingTop: theme.spacing(4),
+	padding: "2%",
+    // paddingBottom: "70px",
+	// paddingLeft: "24px",
+	// paddingRight: "24px",
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -50,10 +61,13 @@ const MainPaper = styled(Paper)(({ theme }) => ({
     width: "80%",
     height: "85%",
 	display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+	borderRadius: "16px",
 }));
 
 const ContentContainer = styled('div')({
+	display: 'flex',
+	flexDirection: 'column',
     flexGrow: 1,
 });
 
@@ -85,6 +99,15 @@ const ButtonsContainer = styled('div')({
 	justifyContent: 'flex-end',
 	gap: '10px' // Adjust the gap between the buttons as needed
   });
+
+const DivIndex = styled('div')(({ theme }) => ({
+    ...theme.typography.h6,
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(1),
+    fontWeight: "bold",
+    paddingTop: "12px",
+	color: theme.palette.secondary.dark
+}));
   
 
 export default function Home() {
@@ -101,6 +124,11 @@ export default function Home() {
 	const [feedbackStartTime, setFeedbackStartTime] = useState(null);	// Measures duration to feedback for each question
 	const [questionFeedbackDurations, setQuestionFeedbackDurations] = useState([]);
 
+	const [isAI, setIsAI] = useState(false);
+
+	const { status, messages, input, submitMessage, handleInputChange, setMessages, append } = useAssistant({ api: '/api/assistant' });
+	const [storeMessages, setStoreMessages] = useState([]);
+
 	useEffect(() => {
 		get_questions().then(value => {
 			console.log(value);
@@ -115,6 +143,15 @@ export default function Home() {
 	  }, [currentQuestion, questions]);
 
 	useEffect(() => {
+		const query = new URLSearchParams(window.location.search);
+		console.log(query);
+		const modeQuery = query.get('mode');
+		if (modeQuery === 'system2') {
+		  setIsAI(true);
+		}
+	}, []);
+
+	useEffect(() => {
 		if (timeRemaining > 0) {
 			timerRef.current = setInterval(() => {
 				setTimeRemaining(prev => prev - 1);
@@ -126,6 +163,16 @@ export default function Home() {
 		  	onSubmitClick();
 		}
 	}, [timeRemaining]);
+
+	const AIQuestionSubmissionString = () => {
+		const correct_index = questions[currentQuestion].correctAnswerIndex;
+		return `
+			Question: ${getCurrentQuestion()},
+			Correct Answer: ${questions[currentQuestion]["answers"][correct_index]},
+			User Answer: ${questions[currentQuestion]["answers"][selectedAnswer]}.
+			Provide feedback, including hints and explanations to help the student understand their answer and the correct solution without directly giving away the answer.
+		`
+	}
 
 	const onAnswerSelected = answerId => {
 		setSelectedAnswer(answerId);
@@ -144,6 +191,13 @@ export default function Home() {
 			newDurations[currentQuestion] = { questionDuration: timeTaken, feedbackDuration: null };
 			return newDurations;
 		});
+
+		if (isAI) {
+			append({
+				role: 'user',
+				content: AIQuestionSubmissionString(),
+			});
+		}		
 
 		// Start the feedback timer
 		setFeedbackStartTime(Date.now());
@@ -167,8 +221,16 @@ export default function Home() {
 			newDurations[currentQuestion].feedbackDuration = feedbackTimeTaken;
 			return newDurations;
 		});
+
+		setStoreMessages(prev => {
+			const newMessages = [...prev];
+			newMessages.push(...messages);
+			return newMessages;
+		});
+		setMessages([]);
 		
 		if (shouldShowNext()) {
+			console.log(messages);
 			setCurrentQuestion(prev => prev + 1);
 			setSelectedAnswer(null);
 			setIsSubmitted(false);
@@ -192,10 +254,11 @@ export default function Home() {
 		const current_questionAnswers = questionAnswers;
 
 		setQuestions([]);
-		setQuestionAnswers([]);
-		setCurrentQuestion(0);
+		// setQuestionAnswers([]);
+		// setCurrentQuestion(0);
 
 		console.log(questionFeedbackDurations);
+		console.log(storeMessages);
 
 		// Perform the async operation
 		submit_questions(current_questions, current_questionAnswers).then(value => {
@@ -236,7 +299,7 @@ export default function Home() {
 		<ThemeProvider theme={theme}>
 			<MainPaper elevation={3} square={false}>
 				<Typography variant="h4" gutterBottom marginBottom={"24px"}>
-					Individual Learning System
+					Individual Learning System: {isAI ? "True" : "False"}
 				</Typography>
 				<hr key={"horizontalLine"} width={"100%"} />
 				<Header timeRemaining={timeRemaining} />
@@ -250,23 +313,37 @@ export default function Home() {
                                 />
 							</div>
 
-							<div style={{ display: 'flex', alignItems: 'flex-start' }}>
-								<div style={{ width: "30%" }}>
-									{getCurrentAnswers().map((currentAnswer, index) => (
-										<Answer
-											answerIndex={index}
-											key={getCurrentQuestion() + index}
-											answer={currentAnswer}
-											isSelected={isAnswerSelected(index)}
-											onAnswerSelect={onAnswerSelected}
-											isSubmitted={isSubmitted}
-      										isCorrect={index === questions[currentQuestion].correctAnswerIndex}
+							<div>
+								<div style={{ display: 'flex', alignItems: 'flex-start', height: '90%' }}>
+									<div style={{ width: "30%" }}>
+										<DivIndex>
+											{`Choose Answer`}{" "}
+										</DivIndex>
+										{getCurrentAnswers().map((currentAnswer, index) => (
+											<Answer
+												answerIndex={index}
+												key={getCurrentQuestion() + index}
+												answer={currentAnswer}
+												isSelected={isAnswerSelected(index)}
+												onAnswerSelect={onAnswerSelected}
+												isSubmitted={isSubmitted}
+												isCorrect={index === questions[currentQuestion].correctAnswerIndex}
+											/>
+										))}
+									</div>
+									{isSubmitted && !isAI && (
+										<FeedbackBox feedback={feedback} isCorrect={isAnswerCorrect()}/>
+									)}
+									{isSubmitted && isAI && (
+										<AIFeedbackBox 
+											status={status}
+											messages={messages}
+											input={input}
+											submitMessage={submitMessage}
+											handleInputChange={handleInputChange}
 										/>
-									))}
+									)}
 								</div>
-								{isSubmitted && (
-									<FeedbackBox feedback={feedback} isCorrect={isAnswerCorrect()}/>
-								)}
 							</div>
 
 							<ButtonsContainer>
@@ -286,6 +363,7 @@ export default function Home() {
                                             variant="contained"
                                             onClick={onNextClick}
                                             color="primary"
+											disabled={status !== 'awaiting_message'}
                                         >
                                             {currentQuestion < questions.length - 1 ? "Next" : "Complete"}
                                         </NextButton>
@@ -293,11 +371,14 @@ export default function Home() {
 							</ButtonsContainer>
 						</ContentContainer>
 					) : result !== null ? (
-						<Result result={result}/>
+						<Result 
+							result={result}
+							questionAnswers={questionAnswers}
+							storeMessages={storeMessages}
+							questionFeedbackDurations={questionFeedbackDurations}
+						/>
 					) : (
-						<div>
-
-						</div>
+						<CircularLoading key={"loadingCircle"}/>
 					)
 				}
 			</MainPaper>

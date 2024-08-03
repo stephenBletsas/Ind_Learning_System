@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
+import { saveToFile } from '../utils/save_file';
 
 
 const SvgContainer = styled('div')({
@@ -15,15 +17,13 @@ const SvgContainer = styled('div')({
     userSelect: "none"
 });
 
-const ResultSVG = styled('img')({
-    height: "100%",
-    width: "100%",
-    margin: "0 auto"
-});
-
-const ResultParagraph = styled('pre')({
-    textAlign: "center"
-});
+const ResultParagraph = styled('div')(({ theme }) => ({
+    ...theme.typography.h5,
+    textAlign: "center",
+    marginBottom: "24px",
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(1),
+}));
 
 const Typo = styled('div')(({ theme }) => ({
     ...theme.typography.h4,
@@ -35,13 +35,28 @@ const Typo = styled('div')(({ theme }) => ({
     color: theme.palette.secondary.dark
 }));
 
-const Result = ({ result }) => {
-    const getSuccessMessage = () => {
-        return `Passed!\n ${result.correctAnswers} / ${result.questionsLength} correct`;
+const SaveButton = styled(Button)(({ theme }) => ({
+	margin: theme.spacing(),
+	borderRadius: "16px",
+	fontSize: "18px",
+    marginTop: "20px",
+	padding: "14px 64px",
+    
+}));
+
+const Result = ({ result, questionAnswers, storeMessages, questionFeedbackDurations }) => {
+    const getMessage = () => {
+        return `${result.correctAnswers} / ${result.questionsLength} questions answered correctly`;
     };
 
-    const getFailMessage = () => {
-        return `Fail!\n ${result.correctAnswers} / ${result.questionsLength} correct`;
+    const generateTimestamp = () => {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        return `test_results_${year}${month}${day}_${hours}${minutes}.json`;
     };
 
     return (
@@ -50,8 +65,21 @@ const Result = ({ result }) => {
                 Thank you for participating in the experiment!
             </Typo>
             <ResultParagraph>
-                {result.pass ? getSuccessMessage() : getFailMessage()}
+                {getMessage()}
             </ResultParagraph>
+            <Stack direction="row" sx={{justifyContent: 'center'}}>
+                <SaveButton
+                    variant="contained"
+                    onClick={() => saveToFile({
+                        questionAnswers,
+                        questionFeedbackDurations,
+                        storeMessages,
+                    }, generateTimestamp())}
+                    color="primary"
+                >
+                    Save Results
+                </SaveButton>
+            </Stack>
         </SvgContainer>
     );
 };
