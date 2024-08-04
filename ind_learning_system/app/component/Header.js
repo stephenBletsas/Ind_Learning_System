@@ -40,9 +40,9 @@ const Header = ({ timeRemaining }) => {
             <Title>
                 Mathematics: Algebra
             </Title>
-            <Typo>
+            {/* <Typo>
                 Answer the questions below
-            </Typo>
+            </Typo> */}
             </div>
             <Timer>
 				Time Remaining: {Math.floor(timeRemaining / 60)}:{('0' + timeRemaining % 60).slice(-2)}

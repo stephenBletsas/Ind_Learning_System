@@ -26,25 +26,26 @@ const ContentContainer = styled('div')({
 });
 
 const NextButton = styled(Button)(({ theme }) => ({
-	margin: theme.spacing(),
+	margin: theme.spacing(2),
 	borderRadius: "16px",
 	fontSize: "18px",
-    marginTop: "20px",
+    marginTop: "24px",
+    marginBottom: "12px",
 	padding: "14px 64px",
-    position: "absolute",
-    right: "30px",
-	bottom: "15px"
+    // position: "absolute",
+    // right: "30px",
+	// bottom: "15px"
 }));
 
 const SubmitButton = styled(Button)(({ theme }) => ({
 	margin: theme.spacing(),
 	borderRadius: "16px",
 	fontSize: "18px",
-    marginTop: "20px",
+    marginTop: "24px",
 	padding: "14px 64px",
-    position: "absolute",
-    right: "30px",
-	bottom: "15px"
+    // position: "absolute",
+    // right: "30px",
+	// bottom: "15px"
 }));
 
 const ButtonsContainer = styled('div')({
@@ -59,7 +60,7 @@ const DivIndex = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(1),
     fontWeight: "bold",
-    paddingTop: "12px",
+    paddingTop: "0px",
 	color: theme.palette.secondary.dark
 }));
   
