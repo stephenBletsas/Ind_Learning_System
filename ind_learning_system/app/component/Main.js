@@ -17,7 +17,7 @@ import CircularLoading from "./CircularLoading";
 import { useAssistant } from 'ai/react';
 import AIFeedbackBox from "./AIFeedback";
 
-const STARTING_TIME = 15;
+const STARTING_TIME = 1500;
 
 const ContentContainer = styled('div')({
 	display: 'flex',
