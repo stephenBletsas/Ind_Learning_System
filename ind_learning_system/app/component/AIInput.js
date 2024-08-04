@@ -12,19 +12,16 @@ const FeedBox = styled(Paper)(({ theme }) => ({
 	borderRadius: "16px",
     marginLeft: theme.spacing(2),
 	marginRight: theme.spacing(2),
-	// marginTop: "-10px",
-    position: 'relative',
     display: 'flex',
     alignItems: 'center', // Center align items vertically
+    overflow: 'hidden', // Ensure no overflow
 }));
 
 const SubmitButton = styled(Button)(({theme}) => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(),
 	borderRadius: "16px",
-	fontSize: "18px",
     backgroundColor: theme.palette.amber.main,
-	// padding: "14px 64px",
 }))
 
 const AIInput = ({ status, input, submitMessage, handleInputChange }) => {

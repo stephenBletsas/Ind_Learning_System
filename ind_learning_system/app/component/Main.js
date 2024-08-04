@@ -33,7 +33,7 @@ const NextButton = styled(Button)(({ theme }) => ({
 	padding: "14px 64px",
     position: "absolute",
     right: "30px",
-	bottom: "30px"
+	bottom: "15px"
 }));
 
 const SubmitButton = styled(Button)(({ theme }) => ({
@@ -44,7 +44,7 @@ const SubmitButton = styled(Button)(({ theme }) => ({
 	padding: "14px 64px",
     position: "absolute",
     right: "30px",
-	bottom: "30px"
+	bottom: "15px"
 }));
 
 const ButtonsContainer = styled('div')({

@@ -18,7 +18,7 @@ const SvgContainer = styled('div')({
 });
 
 const ResultParagraph = styled('div')(({ theme }) => ({
-    ...theme.typography.h5,
+    ...theme.typography.h6,
     textAlign: "center",
     marginBottom: "24px",
     backgroundColor: theme.palette.background.paper,
@@ -26,7 +26,7 @@ const ResultParagraph = styled('div')(({ theme }) => ({
 }));
 
 const Typo = styled('div')(({ theme }) => ({
-    ...theme.typography.h4,
+    ...theme.typography.h5,
     textAlign: "center",
     marginBottom: "24px",
     backgroundColor: theme.palette.background.paper,
@@ -38,10 +38,9 @@ const Typo = styled('div')(({ theme }) => ({
 const SaveButton = styled(Button)(({ theme }) => ({
 	margin: theme.spacing(),
 	borderRadius: "16px",
-	fontSize: "18px",
+	fontSize: "14px",
     marginTop: "20px",
-	padding: "14px 64px",
-    
+	padding: "14px 24px",
 }));
 
 const Result = ({ result, questionAnswers, storeMessages, questionFeedbackDurations }) => {

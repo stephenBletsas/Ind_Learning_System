@@ -10,17 +10,19 @@ const FeedBox = styled(Paper)(({ theme }) => ({
 	borderRadius: "16px",
     marginLeft: theme.spacing(2),
 	marginRight: theme.spacing(2),
-	marginTop: "-12px",
     width: '70%',
-    height: '40vh',
-    maxHeight: '40vh',
+    height: '35vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    overflow: 'hidden',
 }));
 
 const MessageBox = styled('div')(({ theme }) => ({
     overflow: 'scroll',
     display: 'flex',
     flexDirection: 'column',
-    height: '85%',
+    height: '95%',
     marginBottom: "8px",
 
     /* Hide scrollbar for Chrome, Safari, and Opera */

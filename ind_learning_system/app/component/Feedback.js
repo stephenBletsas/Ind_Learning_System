@@ -16,19 +16,17 @@ const FeedBox = styled(Paper)(({ theme, correct }) => ({
 	borderRadius: "16px",
     marginLeft: theme.spacing(2),
 	marginRight: theme.spacing(2),
-	marginTop: "-12px",
     width: '70%'
 }));
 
 const Title = styled('div')(({ theme }) => ({
-    ...theme.typography.h4,
+    ...theme.typography.h6,
     padding: theme.spacing(1),
-    marginBottom: theme.spacing(2),
     fontWeight: "bold",
 }));
 
 const Content = styled('div')(({ theme }) => ({
-    ...theme.typography.h5,
+    ...theme.typography.body1,
     padding: theme.spacing(1),
 }));
 

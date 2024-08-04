@@ -17,7 +17,8 @@ const MessageBox = styled(Paper)(({ theme, isAss }) => ({
     maxWidth: '75%',
     // width: '95%',
     position: 'relative',
-    ...theme.typography.h6,
+    ...theme.typography.body1,
+    fontSize: '14px',
 }));
 
 const MessageContainer = styled('div')(({ theme }) => ({
@@ -36,7 +37,8 @@ const FormattedPre = styled('pre')(({ theme }) => ({
 
 const BoldText = styled('strong')(({ theme }) => ({
     // fontFamily: theme.typography.fontFamily,
-    ...theme.typography.h6,
+    ...theme.typography.body1,
+    fontSize: '14px',
     fontWeight: "bold"
 }));
 
@@ -45,7 +47,6 @@ const AIMessage = ({ m }) => {
         <MessageContainer>
             <MessageBox isAss={m.role === 'assistant'}>
                 <div key={m.id}>
-                    {/* <BoldText>{`${m.role}: `}</BoldText> */}
                     {m.role !== 'data' && 
                         <ReactMarkdown
                             remarkPlugins={[remarkMath]}

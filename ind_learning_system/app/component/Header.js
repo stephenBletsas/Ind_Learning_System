@@ -5,12 +5,12 @@ import Typography from '@mui/material/Typography';
 const HeaderContainer = styled('div')({
 	display: 'flex',
 	justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: "24px"
+    alignItems: 'flex-start',
+    marginTop: "12px"
 });
 
 const Typo = styled('div')(({ theme }) => ({
-    ...theme.typography.h6,
+    ...theme.typography.subtitle1,
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(1),
     paddingTop: "0px",
@@ -18,7 +18,7 @@ const Typo = styled('div')(({ theme }) => ({
 }));
 
 const Title = styled('div')(({ theme }) => ({
-    ...theme.typography.h4,
+    ...theme.typography.h5,
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(1),
     fontWeight: "bold",
@@ -26,7 +26,7 @@ const Title = styled('div')(({ theme }) => ({
 }));
 
 const Timer = styled('div')(({ theme }) => ({
-    ...theme.typography.h5,
+    ...theme.typography.h6,
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(1),
     fontWeight: "bold",

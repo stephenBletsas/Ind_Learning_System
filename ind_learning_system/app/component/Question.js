@@ -6,9 +6,11 @@ import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css'; // Import KaTeX CSS for styling
 
 const DivIndex = styled('div')(({ theme }) => ({
-    ...theme.typography.h5,
+    ...theme.typography.h6,
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(1),
+    paddingBottom: '0',
+    paddingTop: '0',
     fontWeight: "bold",
     paddingTop: "12px"
 }));
@@ -17,8 +19,8 @@ const QuestionBody = styled('div')(({ theme }) => ({
     ...theme.typography.body1,
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(1),
-    fontSize: "22px",
-    marginBottom: "50px",
+    fontSize: "18px",
+    marginBottom: "24px",
     overflowX: "auto",
     overflowY: "hidden",
     marginTop: "0px"
