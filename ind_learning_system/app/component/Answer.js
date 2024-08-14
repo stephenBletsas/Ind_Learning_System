@@ -15,11 +15,11 @@ const AnswerBody = styled('div')(({ theme }) => ({
 }));
 
 const AnswerTypography = styled('div')(({ theme, correct, incorrect }) => ({
-    ...theme.typography.p,
+    ...theme.typography.body1,
     ...(correct && { color: theme.palette.success.light }),
     ...(incorrect && { color: theme.palette.error.light }),
     backgroundColor: theme.palette.background.paper,
-    fontSize: "20px",
+    fontSize: "18px",
     display: "inline-block",
     cursor: "pointer"
 }));
