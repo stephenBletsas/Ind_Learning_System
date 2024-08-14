@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
+import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import Paper from '@mui/material/Paper';
 import AIInput from "./AIInput";
 import AIMessage from "./AIMessages";
@@ -35,6 +39,13 @@ const MessageBox = styled('div')(({ theme }) => ({
     scrollbarWidth: 'none',  /* Firefox */
 }));
 
+const ButtonMessageBox = styled('div')(({ theme }) => ({
+    overflow: 'scroll',
+    display: 'flex',
+    flexDirection: 'row',
+    height: '95%',
+}));
+
 const AIFeedbackBox = ({ status, messages, input, submitMessage, handleInputChange }) => {
     useEffect(() => {
         console.log(messages);
@@ -49,14 +60,29 @@ const AIFeedbackBox = ({ status, messages, input, submitMessage, handleInputChan
 
     return (
         <FeedBox>
+            <ButtonMessageBox>
             <MessageBox id="scrollable_div">
                 {messages.map((m, index) => (
                     index !== 0 && <AIMessage m={m} key={index}/>
                 ))}
             </MessageBox>
-										
+                                            
             {status === 'in_progress' && <div />}
-                        
+
+            <Stack direction="column" spacing={1}>
+                <IconButton aria-label="delete">
+                    <OpenInFullIcon />
+                </IconButton>
+            </Stack>
+            </ButtonMessageBox>
+            {/* <MessageBox id="scrollable_div">
+                {messages.map((m, index) => (
+                    index !== 0 && <AIMessage m={m} key={index}/>
+                ))}
+            </MessageBox>
+                                            
+            {status === 'in_progress' && <div />} */}
+
             <AIInput 
                 status={status} 
                 input={input} 
