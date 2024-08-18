@@ -74,9 +74,9 @@ const StartScreen = ({ onStart }) => {
                         priority
                     />
                     <Typography variant="body1" gutterBottom>
-                        In this quiz, you'll be answering math questions designed to help improve your understanding. 
+                        In this quiz, you&apos;ll be answering math questions designed to help improve your understanding. 
                         Take your time to carefully read each question and select the best answer. 
-                        After each question, you'll receive feedback to guide your learning. Click the button below to begin. Good luck!
+                        After each question, you&apos;ll receive feedback to guide your learning. Click the button below to begin. Good luck!
                     </Typography>
                     <WelcomeButton variant="contained" color="primary" onClick={onStart}>
                         Start Quiz
