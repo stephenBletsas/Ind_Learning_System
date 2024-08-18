@@ -3,7 +3,7 @@ import QuestionsData from "@/app/api/data/questionData";
 const get_questions = () => {
     return new Promise(resolve => {
         setTimeout(() => {
-            const questionsLength = 2;
+            const questionsLength = QuestionsData.length;
             const questions = [];
 
             for (let i = 0; i < questionsLength; i++) {
