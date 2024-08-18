@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from "react";
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import UNSWImage from '../../assets/unsw.png';
+import DemoImage from '../../assets/demo.jpeg';
+import Image from 'next/image';
 
 const WelcomeBox = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
@@ -24,37 +26,64 @@ const WelcomeButton = styled(Button)(({ theme }) => ({
     margin: theme.spacing(),
 	borderRadius: "16px",
     fontSize: "16px",
-    marginTop: "24px",
 	padding: "14px",
 }));
 
 const StartScreen = ({ onStart }) => {
+    const [isDemo, setIsDemo] = useState(false); // Track if the demo has started
+
+    const handleDemo = () => {
+		setIsDemo(true); // Set the demo as started
+	};
+
     return (
         <WelcomeBox elevation={0} >
             <WelcomeBox elevation={0} style={{ justifyContent: 'space-evenly' }}>
-                <Box 
-                    component="img" 
-                    src={UNSWImage.src} // Update the path to your image
-                    alt="UNSW Image" 
-                    sx={{ 
-                        width: '200px', // Adjust the size of the image as needed
-                        height: 'auto',
-                        marginBottom: 3
-                    }}
-                />
-                <Typography variant="h4" gutterBottom>
-                    Welcome to the Individual Learning System!
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                    The purpose of this study is to evaluate whether a user-driven chatbot learning system can improve high-school students&apos; academic <strong>performance</strong> and <strong>motivation</strong> compared to traditional learning methods, particularly in mathematics.
-                </Typography>
-                {/* <Typography variant="body1" gutterBottom>
-                    In this quiz, you will be answering several questions. Take your time to read each question carefully and provide your best answer.
-                    You will receive feedback after each question. Click the button below to start the quiz. Good luck!
-                </Typography> */}
-                <WelcomeButton variant="contained" color="primary" onClick={onStart}>
-                    Start Quiz
-                </WelcomeButton>
+                {!isDemo ? 
+                <>
+                    <Box 
+                        component="img" 
+                        src={UNSWImage.src}
+                        alt="UNSW Image" 
+                        sx={{ 
+                            width: '200px',
+                            height: 'auto',
+                            marginBottom: 3
+                        }}
+                    />
+                    <Typography variant="h4" gutterBottom>
+                        Welcome to the Individual Learning System!
+                    </Typography>
+                    <Typography variant="body1" gutterBottom>
+                        The purpose of this study is to evaluate whether a user-driven chatbot learning system can improve high-school students&apos; academic <strong>performance</strong> and <strong>motivation</strong> compared to traditional learning methods, particularly in mathematics.
+                    </Typography>
+                    <WelcomeButton variant="contained" color="primary" onClick={handleDemo}>
+                        Start Demo
+                    </WelcomeButton>
+                </> :
+                <>
+                    <Typography variant="h4" gutterBottom>
+                        Let&apos;s beign with a quick demo
+                    </Typography>
+                    <Image 
+                        src={DemoImage.src}  // Image tag needed for pre loading image
+                        alt="Demo Image" 
+                        width={800}
+                        height={360}
+                        loading="eager"
+                        priority
+                    />
+                    <Typography variant="body1" gutterBottom>
+                        In this quiz, you'll be answering math questions designed to help improve your understanding. 
+                        Take your time to carefully read each question and select the best answer. 
+                        After each question, you'll receive feedback to guide your learning. Click the button below to begin. Good luck!
+                    </Typography>
+                    <WelcomeButton variant="contained" color="primary" onClick={onStart}>
+                        Start Quiz
+                    </WelcomeButton>
+                </> 
+            }
+                
             </WelcomeBox>
         </WelcomeBox>
     );
