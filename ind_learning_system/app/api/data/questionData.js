@@ -19,7 +19,7 @@ const QuestionsData = [
     },
     {
         question: `Simplify the following algebraic equation: $\\dfrac{x+3}{4} + \\dfrac{x+2}{5}$`,
-        answers: ["$\\dfrac{9x+13}{20}$", "$\\dfrac{5x+7}{20}$", "$\\dfrac{7x+5}{20}$", "$\\dfrac{9x+7}{20}$"],
+        answers: ["$\\dfrac{9x+23}{20}$", "$\\dfrac{5x+7}{20}$", "$\\dfrac{7x+5}{20}$", "$\\dfrac{9x+15}{20}$"],
         correctAnswerIndex: 0,
         explanation: "To simplify $\\dfrac{x+3}{4} + \\dfrac{x+2}{5}$, find a common denominator, which is $20$. $\\\\$ Multiply the numerator of the first fraction by $5$ and the numerator of the second fraction by $4$, resulting in $\\dfrac{5(x+3) + 4(x+2)}{20}$. Simplify the expression in the numerator to get $\\dfrac{9x+13}{20}$."
     },
