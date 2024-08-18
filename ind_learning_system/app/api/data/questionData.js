@@ -21,7 +21,7 @@ const QuestionsData = [
         question: `Simplify the following algebraic equation: $\\dfrac{x+3}{4} + \\dfrac{x+2}{5}$`,
         answers: ["$\\dfrac{9x+23}{20}$", "$\\dfrac{5x+7}{20}$", "$\\dfrac{7x+5}{20}$", "$\\dfrac{9x+15}{20}$"],
         correctAnswerIndex: 0,
-        explanation: "To simplify $\\dfrac{x+3}{4} + \\dfrac{x+2}{5}$, find a common denominator, which is $20$. $\\\\$ Multiply the numerator of the first fraction by $5$ and the numerator of the second fraction by $4$, resulting in $\\dfrac{5(x+3) + 4(x+2)}{20}$. Simplify the expression in the numerator to get $\\dfrac{9x+13}{20}$."
+        explanation: "To simplify $\\dfrac{x+3}{4} + \\dfrac{x+2}{5}$, find a common denominator, which is $20$. Multiply the numerator of the first fraction by $5$ and the numerator of the second fraction by $4$, resulting in $\\dfrac{5(x+3) + 4(x+2)}{20}$. Simplify the expression in the numerator to get $\\dfrac{9x+13}{20}$."
     },
     {
         question: `Simplify the following algebraic equation: $\\dfrac{8}{3x-2} - \\dfrac{3}{1-x}$`,
@@ -33,7 +33,7 @@ const QuestionsData = [
         question: `Solve the following equation for $x$. You can check your solution by substitution: $2(4x - 5) = -7x$`,
         answers: ["$x = \\dfrac{5}{4}$", "$x = \\dfrac{3}{2}$", "$x = \\dfrac{2}{3}$", "$x = \\dfrac{-2}{3}$"],
         correctAnswerIndex: 2,
-        explanation: "Explanation: Start by expanding the equation $2(4x - 5) = -7x$, which gives $8x - 10 = -7x$. Next, add $7x$ to both sides to get $15x - 10 = 0$. Add $10$ to both sides to obtain $15x = 10$, and finally divide both sides by $15$, yielding $x = \\dfrac{10}{15} = \\dfrac{2}{3}$. Substituting $x = \\dfrac{2}{3}$ back into the original equation confirms that it satisfies the equation."
+        explanation: "Start by expanding the equation $2(4x - 5) = -7x$, which gives $8x - 10 = -7x$. Next, add $7x$ to both sides to get $15x - 10 = 0$. Add $10$ to both sides to obtain $15x = 10$, and finally divide both sides by $15$, yielding $x = \\dfrac{10}{15} = \\dfrac{2}{3}$. Substituting $x = \\dfrac{2}{3}$ back into the original equation confirms that it satisfies the equation."
     },
     {
         question: `Solve the following inequality: $2x + 6 < 14$`,
@@ -117,77 +117,40 @@ const QuestionsData = [
         question: `Solve the following pairs of simultaneous equations, using the elimination method: $3x + 2y = 6$ and $5x + 3y = 11$`,
         answers: ["$x = 4, \\, y = -3$", "$x = 3, \\, y = -2$", "$x = 2, \\, y = -1$", "$x = 1, \\, y = 0$"],
         correctAnswerIndex: 0,
-        explanation: `To eliminate $y$, multiply the first equation by $3$ and the second equation by $2$ to align the $y$ terms:
-        $3(3x + 2y) = 3(6)$ gives $9x + 6y = 18$,
-        and 
-        $2(5x + 3y) = 2(11)$ gives $10x + 6y = 22$. 
-        Now subtract the first equation from the second: 
-        $(10x + 6y) - (9x + 6y) = 22 - 18$.
-        This simplifies to $x = 4$. 
-        Substitute $x = 4$ back into the first equation $3x + 2y = 6$ to find:
-        $3(4) + 2y = 6$,
-        which simplifies to $12 + 2y = 6$. 
-        Subtract $12$ from both sides to get $2y = -6$, and then divide by $2$ to find $y = -3$. 
+        explanation: `To eliminate $y$, multiply the first equation by $3$ and the second equation by $2$ to align the $y$ terms: $\\\\$
+        $3(3x + 2y) = 3(6)$ gives $9x + 6y = 18$, and $2(5x + 3y) = 2(11)$ gives $10x + 6y = 22$. $\\\\$
+        Now subtract the first equation from the second: $\\\\$
+        $(10x + 6y) - (9x + 6y) = 22 - 18$. $\\\\$
+        This simplifies to $x = 4$. Substitute $x = 4$ back into the first equation $3x + 2y = 6$ to find: $\\\\$
+        $3(4) + 2y = 6$, which simplifies to $12 + 2y = 6$. $\\\\$
+        Subtract $12$ from both sides to get $2y = -6$, and then divide by $2$ to find $y = -3$. $\\\\$
         Therefore, the solution is $x = 4, \\, y = -3$.`
     },
     {
         question: `Alex buys 4 bolts and 6 washers for \\$2.20 and Holly spends \\$1.80 on 3 bolts and 5 washers at the same local hardware store. Determine the costs of each bolt and each washer.`,
         answers: ["Bolts cost \\$0.40, washers cost \\$0.10", "Bolts cost \\$0.20, washers cost \\$0.20", "Bolts cost \\$0.10, washers cost \\$0.30", "Bolts cost \\$0.30, washers cost \\$0.10"],
         correctAnswerIndex: 2,
-        explanation: `Let $x$ be the cost of a bolt and $y$ be the cost of a washer. The problem gives the following system of equations based on the purchases:
-
-        $4x + 6y = 2.20$
-        
-        $3x + 5y = 1.80$
-        
-        To solve, multiply the first equation by $3$ and the second by $4$ to align the coefficients of $x$:
-        
-        $12x + 18y = 6.60$
-        
-        $12x + 20y = 7.20$
-        
-        Now, subtract the first equation from the second:
-        
-        $2y = 0.60$
-        
-        Solving for $y$ gives $y = 0.30$, so the cost of a washer is \\$0.30. Substitute $y = 0.30$ into the first equation:
-        
-        $4x + 6(0.30) = 2.20$
-        
+        explanation: `Let $x$ be the cost of a bolt and $y$ be the cost of a washer. The problem gives the following system of equations based on the purchases: $\\\\$
+        $4x + 6y = 2.20$ and $3x + 5y = 1.80$ $\\\\$
+        To solve, multiply the first equation by $3$ and the second by $4$ to align the coefficients of $x$. We get: $\\\\$
+        $12x + 18y = 6.60$ and $12x + 20y = 7.20$ $\\\\$
+        Now, subtract the first equation from the second: $\\\\$
+        $2y = 0.60$ $\\\\$
+        Solving for $y$ gives $y = 0.30$, so the cost of a washer is \\$0.30. Substitute $y = 0.30$ into the first equation: $\\\\$
+        $4x + 6(0.30) = 2.20$ $\\\\$
         Simplifying, $4x + 1.80 = 2.20$, which gives $4x = 0.40$, so $x = 0.10$. Therefore, bolts cost \\$0.10, and washers cost \\$0.30.`
     },
     {
         question: `A vanilla thick shake is \\$2 more than a fruit juice. If 3 vanilla thick shakes and 5 fruit juices cost \\$30, determine their individual prices.`,
         answers: ["Thick shakes cost \\$4, juices cost \\$2", "Thick shakes cost \\$5, juices cost \\$3", "Thick shakes cost \\$6, juices cost \\$4", "Thick shakes cost \\$3, juices cost \\$1"],
         correctAnswerIndex: 1,
-        explanation: `Let $x$ be the cost of a fruit juice and $y$ be the cost of a vanilla thick shake. The problem provides the following two equations:
-
-        $y = x + 2$ (since a thick shake is \\$2 more than a fruit juice)
-        
-        $3y + 5x = 30$ (cost of 3 thick shakes and 5 fruit juices)
-        
-        Substitute $y = x + 2$ into the second equation:
-        
-        $3(x + 2) + 5x = 30$
-        
-        Expanding and simplifying:
-        
-        $3x + 6 + 5x = 30$
-        
-        $8x + 6 = 30$
-        
-        Subtract $6$ from both sides:
-        
-        $8x = 24$
-        
-        Divide by $8$:
-        
-        $x = 3$
-        
-        So, the cost of a fruit juice is \\$3. Substitute $x = 3$ into $y = x + 2$:
-        
-        $y = 3 + 2 = 5$
-        
+        explanation: `Let $x$ be the cost of a fruit juice and $y$ be the cost of a vanilla thick shake. The problem provides the following two equations: $\\\\$
+        $y = x + 2$ (since a thick shake is \\$2 more than a fruit juice), and, $3y + 5x = 30$ (cost of 3 thick shakes and 5 fruit juices) $\\\\$
+        Substitute $y = x + 2$ into the second equation: $3(x + 2) + 5x = 30$ $\\\\$
+        Expanding and simplifying: $3x + 6 + 5x = 30$ becomes $8x + 6 = 30$ $\\\\$
+        Subtract $6$ from both sides: $8x = 24$ $\\\\$
+        Divide by $8$: $x = 3$ $\\\\$
+        So, the cost of a fruit juice is \\$3. Substitute $x = 3$ into $y = x + 2$: $y = 3 + 2 = 5$ $\\\\$
         Therefore, the cost of a thick shake is \\$5, and the cost of a fruit juice is \\$3.`
     },
 ];
