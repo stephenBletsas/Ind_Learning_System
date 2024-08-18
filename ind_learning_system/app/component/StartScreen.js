@@ -46,7 +46,7 @@ const StartScreen = ({ onStart }) => {
                     Welcome to the Individual Learning System!
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                    The purpose of this study is to evaluate whether a user-driven chatbot learning system can improve high-school students' academic <strong>performance</strong> and <strong>motivation</strong> compared to traditional learning methods, particularly in mathematics.
+                    The purpose of this study is to evaluate whether a user-driven chatbot learning system can improve high-school students&apos; academic <strong>performance</strong> and <strong>motivation</strong> compared to traditional learning methods, particularly in mathematics.
                 </Typography>
                 {/* <Typography variant="body1" gutterBottom>
                     In this quiz, you will be answering several questions. Take your time to read each question carefully and provide your best answer.
