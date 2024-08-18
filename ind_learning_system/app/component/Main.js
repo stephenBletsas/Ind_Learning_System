@@ -29,7 +29,7 @@ const ContentContainer = styled('div')({
 const NextButton = styled(Button)(({ theme }) => ({
 	margin: theme.spacing(2),
 	borderRadius: "16px",
-	fontSize: "18px",
+	fontSize: "16px",
     marginTop: "24px",
     marginBottom: "12px",
 	padding: "14px 64px",
@@ -41,7 +41,7 @@ const NextButton = styled(Button)(({ theme }) => ({
 const SubmitButton = styled(Button)(({ theme }) => ({
 	margin: theme.spacing(),
 	borderRadius: "16px",
-	fontSize: "18px",
+	fontSize: "16px",
     marginTop: "24px",
 	padding: "14px 64px",
     // position: "absolute",

@@ -68,7 +68,7 @@ export default function Home() {
 		<ThemeProvider theme={theme}>
 			<MainPaper elevation={3} square={false}>
 				<Typography variant="h5" gutterBottom marginBottom={"12px"}>
-					Individual Learning System: {isAI ? "True" : "False"}
+					Individual Learning System
 				</Typography>
 				<hr key={"horizontalLine"} width={"100%"} />
 				{!hasStarted ? (
