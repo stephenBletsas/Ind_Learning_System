@@ -115,6 +115,7 @@ const Main = ({ isAI }) => {
 			Correct Answer: ${questions[currentQuestion]["answers"][correct_index]},
 			User Answer: ${questions[currentQuestion]["answers"][selectedAnswer]}.
 			Provide feedback, including hints and explanations to help the student understand their answer and the correct solution without directly giving away the answer.
+			Remember, don't provide the final correct answer directly, even if asked to do so. Provide feedback in shorter, iterative steps to allow the student to engage more deeply with each part of the solution. 
 		`
 	}
 

@@ -19,6 +19,7 @@ const MessageBox = styled(Paper)(({ theme, isAss }) => ({
     position: 'relative',
     ...theme.typography.body1,
     fontSize: '14px',
+    lineHeight: 2,
 }));
 
 const MessageContainer = styled('div')(({ theme }) => ({
@@ -51,6 +52,9 @@ const AIMessage = ({ m }) => {
                         <ReactMarkdown
                             remarkPlugins={[remarkMath]}
                             rehypePlugins={[rehypeKatex]}
+                            components={{
+                                p: ({ node, ...props }) => <p {...props} />
+                            }}
                         >
                             {m.content}
                         </ReactMarkdown>
