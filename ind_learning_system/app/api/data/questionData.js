@@ -153,20 +153,20 @@ const QuestionsData = [
     //     So, the cost of a fruit juice is \\$3. Substitute $x = 3$ into $y = x + 2$: $y = 3 + 2 = 5$ $\\\\$
     //     Therefore, the cost of a thick shake is \\$5, and the cost of a fruit juice is \\$3.`
     // },
-    // Chapter 8A, Question 10e
-    {
-        question: `Expand and simplify the following: $(2a+3)(a-5) - (a+6)(2a+5)$`,
-        answers: ["$24a + 45$", "$-12a - 30$", "$-24a - 45$", "$12a + 30$"],
-        correctAnswerIndex: 2,
-        explanation: `First, expand both products: $\\\\$
-        $(2a+3)(a-5) = 2a^2 - 10a + 3a - 15 = 2a^2 - 7a - 15$ $\\\\$
-        $(a+6)(2a+5) = 2a^2 + 5a + 12a + 30 = 2a^2 + 17a + 30$ $\\\\$
-        Now subtract the second expression from the first: $\\\\$
-        $[2a^2 - 7a - 15] - [2a^2 + 17a + 30] = 2a^2 - 7a - 15 - 2a^2 - 17a - 30$ $\\\\$
-        Simplify: $\\\\$
-        $-24a - 45$ $\\\\$
-        Therefore, the simplified expression is $-24a - 45$.`
-    },
+    // // Chapter 8A, Question 10e
+    // {
+    //     question: `Expand and simplify the following: $(2a+3)(a-5) - (a+6)(2a+5)$`,
+    //     answers: ["$24a + 45$", "$-12a - 30$", "$-24a - 45$", "$12a + 30$"],
+    //     correctAnswerIndex: 2,
+    //     explanation: `First, expand both products: $\\\\$
+    //     $(2a+3)(a-5) = 2a^2 - 10a + 3a - 15 = 2a^2 - 7a - 15$ $\\\\$
+    //     $(a+6)(2a+5) = 2a^2 + 5a + 12a + 30 = 2a^2 + 17a + 30$ $\\\\$
+    //     Now subtract the second expression from the first: $\\\\$
+    //     $[2a^2 - 7a - 15] - [2a^2 + 17a + 30] = 2a^2 - 7a - 15 - 2a^2 - 17a - 30$ $\\\\$
+    //     Simplify: $\\\\$
+    //     $-24a - 45$ $\\\\$
+    //     Therefore, the simplified expression is $-24a - 45$.`
+    // },
     // Chapter 8A, Question 10i
     {
         question: `Expand and simplify the following: $3 - (2x - 9)^2$`,
@@ -180,17 +180,17 @@ const QuestionsData = [
         $-4x^2 + 36x - 78$ $\\\\$
         Therefore, the expanded and simplified expression is $-4x^2 + 36x - 78$.`
     },
-    // Chapter 8B, Question 5e
-    {
-        question: `Factorise the following: $3x^2 - 75y^2$`,
-        answers: ["$3(x - 5y)(x + 5y)$", "$3(x + 5y)(x - 5y)$", "$(3x + 5y)(x - 25y)$", "$(3x - 5y)(x + 25y)$"],
-        correctAnswerIndex: 1,
-        explanation: `First, factor out the common factor of 3: $\\\\$
-        $3(x^2 - 25y^2)$ $\\\\$
-        Recognise that $x^2 - 25y^2$ is a difference of squares: $\\\\$
-        $x^2 - 25y^2 = (x + 5y)(x - 5y)$ $\\\\$
-        Therefore, the factorised form is $3(x + 5y)(x - 5y)$.`
-    },
+    // // Chapter 8B, Question 5e
+    // {
+    //     question: `Factorise the following: $3x^2 - 75y^2$`,
+    //     answers: ["$3(x + 5y)(x + 5y)$", "$3(x + 5y)(x - 5y)$", "$(3x + 5y)(x - 25y)$", "$(3x - 5y)(x + 25y)$"],
+    //     correctAnswerIndex: 1,
+    //     explanation: `First, factor out the common factor of 3: $\\\\$
+    //     $3(x^2 - 25y^2)$ $\\\\$
+    //     Recognise that $x^2 - 25y^2$ is a difference of squares: $\\\\$
+    //     $x^2 - 25y^2 = (x + 5y)(x - 5y)$ $\\\\$
+    //     Therefore, the factorised form is $3(x + 5y)(x - 5y)$.`
+    // },
     // Chapter 8B, Question 5m
     {
         question: `Factorise the following: $(3x+5)^2 - x^2$`,
@@ -202,23 +202,23 @@ const QuestionsData = [
         $(3x+5+x)(3x+5-x) = (4x+5)(2x+5)$ $\\\\$
         Therefore, the factorised form is $(4x+5)(2x+5)$.`
     },
-    // Chapter 8B, Question 7a
-    {
-        question: `Factorise by grouping: $x^2 + 4x + ax + 4a$`,
-        answers: ["$(x+4)(x+a)$", "$(x+4)(x-a)$", "$(x-4)(x+a)$", "$(x+2)(x+a)$"],
-        correctAnswerIndex: 0,
-        explanation: `Group the terms in pairs: $\\\\$
-        $(x^2 + 4x) + (ax + 4a)$ $\\\\$
-        Factor out the common terms from each group: $\\\\$
-        $x(x + 4) + a(x + 4)$ $\\\\$
-        Now factor out the common binomial factor $(x + 4)$: $\\\\$
-        $(x + 4)(x + a)$ $\\\\$
-        Therefore, the factorised form is $(x + 4)(x + a)$.`
-    },
+    // // Chapter 8B, Question 7a
+    // {
+    //     question: `Factorise by grouping: $x^2 + 4x + ax + 4a$`,
+    //     answers: ["$(x+4)(x+a)$", "$(x+4)(x-a)$", "$(x-4)(x+a)$", "$(x+2)(x+a)$"],
+    //     correctAnswerIndex: 0,
+    //     explanation: `Group the terms in pairs: $\\\\$
+    //     $(x^2 + 4x) + (ax + 4a)$ $\\\\$
+    //     Factor out the common terms from each group: $\\\\$
+    //     $x(x + 4) + a(x + 4)$ $\\\\$
+    //     Now factor out the common binomial factor $(x + 4)$: $\\\\$
+    //     $(x + 4)(x + a)$ $\\\\$
+    //     Therefore, the factorised form is $(x + 4)(x + a)$.`
+    // },
     // Chapter 8B, Question 7g
     {
         question: `Factorise by grouping: $x^2 - ax - 4x + 4a$`,
-        answers: ["$(x - a)(x - 4)$", "$(x + a)(x - 4)$", "$(x - a)(x + 4)$", "$(x + a)(x + 4)$"],
+        answers: ["$(x - a)(x - 4)$", "$(x + a)(x - 4)$", "$(x - a)(x + a)$", "$(x + a)(x + 4)$"],
         correctAnswerIndex: 0,
         explanation: `Group the terms in pairs: $\\\\$
         $(x^2 - ax) - (4x - 4a)$ $\\\\$
@@ -228,17 +228,17 @@ const QuestionsData = [
         $(x - a)(x - 4)$ $\\\\$
         Therefore, the factorised form is $(x - a)(x - 4)$.`
     },
-    // Chapter 8C, Question 5b
-    {
-        question: `Factorise by first taking out the common factor: $3x^2 + 21x + 36$`,
-        answers: ["$3(x-4)(x+3)$", "$3(x+4)(x+3)$", "$3(x-4)(x-3)$", "$3(x+4)(x-3)$"],
-        correctAnswerIndex: 1,
-        explanation: `First, factor out the common factor of $3$: $\\\\$
-        $3(x^2 + 7x + 12)$ $\\\\$
-        Now factorise the quadratic expression $x^2 + 7x + 12$: $\\\\$
-        $x^2 + 7x + 12 = (x+4)(x+3)$ $\\\\$
-        Therefore, the factorised form is $3(x+4)(x+3)$.`
-    },
+    // // Chapter 8C, Question 5b
+    // {
+    //     question: `Factorise by first taking out the common factor: $3x^2 + 21x + 36$`,
+    //     answers: ["$3(x-4)(x+3)$", "$3(x+4)(x+3)$", "$3(x-4)(x-3)$", "$3(x+4)(x-3)$"],
+    //     correctAnswerIndex: 1,
+    //     explanation: `First, factor out the common factor of $3$: $\\\\$
+    //     $3(x^2 + 7x + 12)$ $\\\\$
+    //     Now factorise the quadratic expression $x^2 + 7x + 12$: $\\\\$
+    //     $x^2 + 7x + 12 = (x+4)(x+3)$ $\\\\$
+    //     Therefore, the factorised form is $3(x+4)(x+3)$.`
+    // },
     // Chapter 8C. Question 5h
     {
         question: `Factorise by first taking out the common factor: $-3x^2 + 9x - 6$`,
@@ -261,17 +261,17 @@ const QuestionsData = [
         $\\dfrac{(x - 3)(x + 4)}{x + 4} = x - 3$ $\\\\$
         Therefore, the simplified expression is $x - 3$.`
     },
-    // Chapter 8c, Question 7g
-    {
-        question: `Use factorisation to simplify these algebraic fractions: $\\dfrac{2(x + 12)}{x^2 + 4x - 96}$`,
-        answers: ["$\\dfrac{2}{x+8}$", "$\\dfrac{2}{x-8}$", "$\\dfrac{2}{x+12}$", "$\\dfrac{2}{x-12}$"],
-        correctAnswerIndex: 1,
-        explanation: `First, factorise the quadratic in the denominator: $\\\\$
-        $x^2 + 4x - 96 = (x - 8)(x + 12)$ $\\\\$
-        Now, cancel out the common factor $(x + 12)$ from the numerator and denominator: $\\\\$
-        $\\dfrac{2(x + 12)}{(x - 8)(x + 12)} = \\dfrac{2}{x - 8}$ $\\\\$
-        Therefore, the simplified expression is $\\dfrac{2}{x - 8}$.`
-    },
+    // // Chapter 8c, Question 7g
+    // {
+    //     question: `Use factorisation to simplify these algebraic fractions: $\\dfrac{2(x + 12)}{x^2 + 4x - 96}$`,
+    //     answers: ["$\\dfrac{2}{x+8}$", "$\\dfrac{2}{x-8}$", "$\\dfrac{2}{x+12}$", "$\\dfrac{2}{x-12}$"],
+    //     correctAnswerIndex: 1,
+    //     explanation: `First, factorise the quadratic in the denominator: $\\\\$
+    //     $x^2 + 4x - 96 = (x - 8)(x + 12)$ $\\\\$
+    //     Now, cancel out the common factor $(x + 12)$ from the numerator and denominator: $\\\\$
+    //     $\\dfrac{2(x + 12)}{(x - 8)(x + 12)} = \\dfrac{2}{x - 8}$ $\\\\$
+    //     Therefore, the simplified expression is $\\dfrac{2}{x - 8}$.`
+    // },
     // Chapter 8c, Question 8a
     {
         question: `Simplify by factorising: $\\dfrac{x^2 - 4}{x^2 + x - 6} \\times \\dfrac{5x - 15}{x^2 + 4x - 12}$`,
@@ -288,35 +288,35 @@ const QuestionsData = [
         $\\dfrac{5(x + 2)(x - 3)}{(x + 3)(x + 6)(x - 2)}$ $\\\\$
         Therefore, the simplified expression is $\\dfrac{5(x+2)(x-3)}{(x+3)(x+6)(x-2)}$.`
     },
-    // Chapter 8c, Question 8c
-    {
-        question: `Simplify by factorising: $\\dfrac{x^2 + 2x - 3}{x^2 - 25} \\times \\dfrac{2x - 10}{x + 3}$`,
-        answers: ["$\\dfrac{2(x+1)}{x-5}$", "$\\dfrac{2(x-3)}{x+5}$", "$\\dfrac{2(x+1)}{x+5}$", "$\\dfrac{2(x-1)}{x+5}$"],
-        correctAnswerIndex: 3,
-        explanation: `First, factorise the numerator and denominator of each fraction: $\\\\$
-        $x^2 + 2x - 3 = (x - 1)(x + 3)$ $\\\\$
-        $x^2 - 25 = (x - 5)(x + 5)$ $\\\\$
-        $2x - 10 = 2(x - 5)$ $\\\\$
-        Now substitute the factored expressions back into the original expression: $\\\\$
-        $\\dfrac{(x - 1)(x + 3)}{(x - 5)(x + 5)} \\times \\dfrac{2(x - 5)}{x + 3}$ $\\\\$
-        Cancel the common factors $(x + 3)$ and $(x - 5)$: $\\\\$
-        $\\dfrac{2(x - 1)}{x + 5}$ $\\\\$
-        Therefore, the simplified expression is $\\dfrac{2(x-1)}{x+5}$.`
-    },
-    // Chapter 8d, Question 3a
-    {
-        question: `Factorise the following: $3x^2 + 10x + 3$`,
-        answers: ["$(3x+1)(x+3)$", "$(3x+3)(x+1)$", "$(x+3)(x+1)$", "$(3x-1)(x+3)$"],
-        correctAnswerIndex: 0,
-        explanation: `To factorise $3x^2 + 10x + 3$, look for two numbers that multiply to $3 \cdot 3 = 9$ and add up to $10$. These numbers are $9$ and $1$. $\\\\$
-        Rewrite $10x$ as $9x + x$: $\\\\$
-        $3x^2 + 9x + x + 3$ $\\\\$
-        Now group the terms: $\\\\$
-        $3x(x + 3) + 1(x + 3)$ $\\\\$
-        Factor out the common binomial factor $(x + 3)$: $\\\\$
-        $(3x + 1)(x + 3)$ $\\\\$
-        Therefore, the factorised form is $(3x+1)(x+3)$.`
-    },
+    // // Chapter 8c, Question 8c
+    // {
+    //     question: `Simplify by factorising: $\\dfrac{x^2 + 2x - 3}{x^2 - 25} \\times \\dfrac{2x - 10}{x + 3}$`,
+    //     answers: ["$\\dfrac{2(x+1)}{x-5}$", "$\\dfrac{2(x-3)}{x+5}$", "$\\dfrac{2(x+1)}{x+5}$", "$\\dfrac{2(x-1)}{x+5}$"],
+    //     correctAnswerIndex: 3,
+    //     explanation: `First, factorise the numerator and denominator of each fraction: $\\\\$
+    //     $x^2 + 2x - 3 = (x - 1)(x + 3)$ $\\\\$
+    //     $x^2 - 25 = (x - 5)(x + 5)$ $\\\\$
+    //     $2x - 10 = 2(x - 5)$ $\\\\$
+    //     Now substitute the factored expressions back into the original expression: $\\\\$
+    //     $\\dfrac{(x - 1)(x + 3)}{(x - 5)(x + 5)} \\times \\dfrac{2(x - 5)}{x + 3}$ $\\\\$
+    //     Cancel the common factors $(x + 3)$ and $(x - 5)$: $\\\\$
+    //     $\\dfrac{2(x - 1)}{x + 5}$ $\\\\$
+    //     Therefore, the simplified expression is $\\dfrac{2(x-1)}{x+5}$.`
+    // },
+    // // Chapter 8d, Question 3a
+    // {
+    //     question: `Factorise the following: $3x^2 + 10x + 3$`,
+    //     answers: ["$(3x+1)(x+3)$", "$(3x+3)(x+1)$", "$(x+3)(x+1)$", "$(3x-1)(x+3)$"],
+    //     correctAnswerIndex: 0,
+    //     explanation: `To factorise $3x^2 + 10x + 3$, look for two numbers that multiply to $3 \cdot 3 = 9$ and add up to $10$. These numbers are $9$ and $1$. $\\\\$
+    //     Rewrite $10x$ as $9x + x$: $\\\\$
+    //     $3x^2 + 9x + x + 3$ $\\\\$
+    //     Now group the terms: $\\\\$
+    //     $3x(x + 3) + 1(x + 3)$ $\\\\$
+    //     Factor out the common binomial factor $(x + 3)$: $\\\\$
+    //     $(3x + 1)(x + 3)$ $\\\\$
+    //     Therefore, the factorised form is $(3x+1)(x+3)$.`
+    // },
     // Chapter 8d, Question 3v
     {
         question: `Factorise the following: $8x^2 - 26x + 15$`,
@@ -347,22 +347,22 @@ const QuestionsData = [
         $\\dfrac{3x + 4}{x - 3}$ $\\\\$
         Therefore, the simplified expression is $\\dfrac{3x+4}{x-3}$.`
     },
-    // Chapter 8d, Question 8c
-    {
-        question: `Combine all your knowledge of factorising to simplify the following: $\\dfrac{1 - x^2}{15x + 9} \\times \\dfrac{25x^2 + 30x + 9}{5x^2 + 8x + 3}$`,
-        answers: ["$\\dfrac{x - 1}{3}$", "$\\dfrac{x + 1}{3}$", "$\\dfrac{1 + x}{3}$", "$\\dfrac{1 - x}{3}$"],
-        correctAnswerIndex: 3,
-        explanation: `First, factorise all terms: $\\\\$
-        $1 - x^2 = (1 - x)(1 + x)$ $\\\\$
-        $15x + 9 = 3(5x + 3)$ $\\\\$
-        $25x^2 + 30x + 9 = (5x + 3)(5x + 3)$ $\\\\$
-        $5x^2 + 8x + 3 = (5x + 3)(x + 1)$ $\\\\$
-        Now substitute the factored forms into the original expression: $\\\\$
-        $\\dfrac{(1 - x)(1 + x)}{3(5x + 3)} \\times \\dfrac{(5x + 3)(5x + 3)}{(5x + 3)(x + 1)}$ $\\\\$
-        Cancel the common factors $(5x + 3)$ and $(1 + x)$: $\\\\$
-        $\\dfrac{1 - x}{3}$ $\\\\$
-        Therefore, the simplified expression is $\\dfrac{1 - x}{3}$.`
-    },
+    // // Chapter 8d, Question 8c
+    // {
+    //     question: `Combine all your knowledge of factorising to simplify the following: $\\dfrac{1 - x^2}{15x + 9} \\times \\dfrac{25x^2 + 30x + 9}{5x^2 + 8x + 3}$`,
+    //     answers: ["$\\dfrac{x - 1}{3}$", "$\\dfrac{x + 1}{3}$", "$\\dfrac{1 + x}{3}$", "$\\dfrac{1 - x}{3}$"],
+    //     correctAnswerIndex: 3,
+    //     explanation: `First, factorise all terms: $\\\\$
+    //     $1 - x^2 = (1 - x)(1 + x)$ $\\\\$
+    //     $15x + 9 = 3(5x + 3)$ $\\\\$
+    //     $25x^2 + 30x + 9 = (5x + 3)(5x + 3)$ $\\\\$
+    //     $5x^2 + 8x + 3 = (5x + 3)(x + 1)$ $\\\\$
+    //     Now substitute the factored forms into the original expression: $\\\\$
+    //     $\\dfrac{(1 - x)(1 + x)}{3(5x + 3)} \\times \\dfrac{(5x + 3)(5x + 3)}{(5x + 3)(x + 1)}$ $\\\\$
+    //     Cancel the common factors $(5x + 3)$ and $(1 + x)$: $\\\\$
+    //     $\\dfrac{1 - x}{3}$ $\\\\$
+    //     Therefore, the simplified expression is $\\dfrac{1 - x}{3}$.`
+    // },
     // Chapter 8e. Question 5a
     {
         question: `Factorise by completing the square: $x^2 + 4x + 1$`,
@@ -374,17 +374,17 @@ const QuestionsData = [
         $(x + 2)^2 - 3 = (x + 2 + \\sqrt{3})(x + 2 - \\sqrt{3})$ $\\\\$
         Therefore, the factorised form is $(x+2+\\sqrt{3})(x+2-\\sqrt{3})$.`
     },
-    // Chapter 8e. Question 5e
-    {
-        question: `Factorise by completing the square: $x^2 - 8x + 13$`,
-        answers: ["$(x-4+\\sqrt{3})(x-4-\\sqrt{3})$", "$(x-4+\\sqrt{5})(x-4-\\sqrt{5})$", "$(x-3+\\sqrt{3})(x-3-\\sqrt{3})$", "$(x-4+\\sqrt{2})(x-4-\\sqrt{2})$"],
-        correctAnswerIndex: 0,
-        explanation: `First, complete the square for the quadratic expression: $\\\\$
-        $x^2 - 8x + 13 = (x - 4)^2 + 3$ $\\\\$
-        Now, apply the difference of squares formula: $\\\\$
-        $(x - 4)^2 - 3 = (x - 4 + \\sqrt{3})(x - 4 - \\sqrt{3})$ $\\\\$
-        Therefore, the factorised form is $(x-4+\\sqrt{3})(x-4-\\sqrt{3})$.`
-    },
+    // // Chapter 8e. Question 5e
+    // {
+    //     question: `Factorise by completing the square: $x^2 - 8x + 13$`,
+    //     answers: ["$(x-4+\\sqrt{3})(x-4-\\sqrt{3})$", "$(x-4+\\sqrt{5})(x-4-\\sqrt{5})$", "$(x-3+\\sqrt{3})(x-3-\\sqrt{3})$", "$(x-4+\\sqrt{2})(x-4-\\sqrt{2})$"],
+    //     correctAnswerIndex: 0,
+    //     explanation: `First, complete the square for the quadratic expression: $\\\\$
+    //     $x^2 - 8x + 13 = (x - 4)^2 + 3$ $\\\\$
+    //     Now, apply the difference of squares formula: $\\\\$
+    //     $(x - 4)^2 - 3 = (x - 4 + \\sqrt{3})(x - 4 - \\sqrt{3})$ $\\\\$
+    //     Therefore, the factorised form is $(x-4+\\sqrt{3})(x-4-\\sqrt{3})$.`
+    // },
     // Chapter 8e. Question 6c
     {
         question: `Factorise by completing the square: $x^2 + 8x + 1$`,
@@ -396,17 +396,17 @@ const QuestionsData = [
         $(x + 4)^2 - 15 = (x + 4 + \\sqrt{15})(x + 4 - \\sqrt{15})$ $\\\\$
         Therefore, the factorised form is $(x+4+\\sqrt{15})(x+4-\\sqrt{15})$.`
     },
-    // Chapter 8e. Question 6d
-    {
-        question: `Factorise by completing the square: $x^2 + 4x + 2$`,
-        answers: ["$(x+2+\\sqrt{2})(x+2-\\sqrt{2})$", "$(x+2+\\sqrt{3})(x+2-\\sqrt{3})$", "$(x+3+\\sqrt{2})(x+3-\\sqrt{2})$", "$(x+1+\\sqrt{2})(x+1-\\sqrt{2})$"],
-        correctAnswerIndex: 0,
-        explanation: `First, complete the square for the quadratic expression: $\\\\$
-        $x^2 + 4x + 2 = (x + 2)^2 - 2$ $\\\\$
-        Now, apply the difference of squares formula: $\\\\$
-        $(x + 2)^2 - 2 = (x + 2 + \\sqrt{2})(x + 2 - \\sqrt{2})$ $\\\\$
-        Therefore, the factorised form is $(x+2+\\sqrt{2})(x+2-\\sqrt{2})$.`
-    }
+    // // Chapter 8e. Question 6d
+    // {
+    //     question: `Factorise by completing the square: $x^2 + 4x + 2$`,
+    //     answers: ["$(x+2+\\sqrt{2})(x+2-\\sqrt{2})$", "$(x+2+\\sqrt{3})(x+2-\\sqrt{3})$", "$(x+3+\\sqrt{2})(x+3-\\sqrt{2})$", "$(x+1+\\sqrt{2})(x+1-\\sqrt{2})$"],
+    //     correctAnswerIndex: 0,
+    //     explanation: `First, complete the square for the quadratic expression: $\\\\$
+    //     $x^2 + 4x + 2 = (x + 2)^2 - 2$ $\\\\$
+    //     Now, apply the difference of squares formula: $\\\\$
+    //     $(x + 2)^2 - 2 = (x + 2 + \\sqrt{2})(x + 2 - \\sqrt{2})$ $\\\\$
+    //     Therefore, the factorised form is $(x+2+\\sqrt{2})(x+2-\\sqrt{2})$.`
+    // }
 ];
 
 export default QuestionsData;

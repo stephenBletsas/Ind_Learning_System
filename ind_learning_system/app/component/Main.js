@@ -18,7 +18,7 @@ import { useAssistant } from 'ai/react';
 import AIFeedbackBox from "./AIFeedback";
 
 // const STARTING_TIME = 15000;
-const STARTING_TIME = 1500;
+const STARTING_TIME = 900;
 
 const ContentContainer = styled('div')({
 	display: 'flex',
