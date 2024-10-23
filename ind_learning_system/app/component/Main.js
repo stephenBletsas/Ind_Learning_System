@@ -18,7 +18,7 @@ import { useAssistant } from 'ai/react';
 import AIFeedbackBox from "./AIFeedback";
 
 // const STARTING_TIME = 15000;
-const STARTING_TIME = 1200;
+const STARTING_TIME = 20;
 
 const ContentContainer = styled('div')({
 	display: 'flex',
@@ -80,7 +80,7 @@ const Main = ({ isAI }) => {
 	const [feedbackStartTime, setFeedbackStartTime] = useState(null);	// Measures duration to feedback for each question
 	const [questionFeedbackDurations, setQuestionFeedbackDurations] = useState([]);
 
-	const { status, messages, input, submitMessage, handleInputChange, setMessages, append } = useAssistant({ api: '/api/assistant' });
+	const { status, messages, input, submitMessage, handleInputChange, setMessages, append, stop } = useAssistant({ api: '/api/assistant' });
 	const [storeMessages, setStoreMessages] = useState([]);
 
 	useEffect(() => {
@@ -104,7 +104,10 @@ const Main = ({ isAI }) => {
 
 		  	return () => clearInterval(timerRef.current);
 		} else {
-		  	onSubmitClick();
+			if (status !== "awaiting_message") {
+				stop();
+			} 
+			onNextClick();
 		}
 	}, [timeRemaining]);
 
@@ -116,6 +119,8 @@ const Main = ({ isAI }) => {
 			User Answer: ${questions[currentQuestion]["answers"][selectedAnswer]}.
 			Provide feedback, including hints and explanations to help the student understand their answer and the correct solution without directly giving away the answer.
 			Remember, don't provide the final correct answer directly, even if asked to do so. Provide feedback in shorter, iterative steps to allow the student to engage more deeply with each part of the solution. 
+
+			Important: Ensure all responses are formatted in Markdown, with math equations formatted using LaTeX enclosed in dollar signs ($) for inline math or double dollar signs ($$) to display math correctly. This will be the alternative to using "/". Also, any ordered lists you do return, please label them with "1)" instead of "1." This is very important for formatting your responses.
 		`
 	}
 
@@ -173,6 +178,14 @@ const Main = ({ isAI }) => {
 			return newMessages;
 		});
 		setMessages([]);
+
+		if (timeRemaining <= 0) {
+			onSubmitClick();
+			setSelectedAnswer(null);
+			setIsSubmitted(false);
+			setFeedback(null);
+			return;
+		}
 		
 		if (shouldShowNext()) {
 			console.log(messages);
