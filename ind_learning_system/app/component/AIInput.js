@@ -21,7 +21,7 @@ const SubmitButton = styled(Button)(({theme}) => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(),
 	borderRadius: "16px",
-    backgroundColor: theme.palette.amber.main,
+    backgroundColor: theme.palette.amber.dark,
 }))
 
 const AIInput = ({ status, input, submitMessage, handleInputChange }) => {

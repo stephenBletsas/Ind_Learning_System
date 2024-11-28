@@ -9,12 +9,32 @@ import StartScreen from "./component/StartScreen";
 import Main from "./component/Main";
 
 const theme = createTheme({
-    palette: {
+    // palette: {
+    //     primary: {
+    //         light: blue[300],
+    //         main: blue[500],
+    //         dark: blue[700],
+    //         contrastText: "#fff"
+    //     },
+    //     secondary: {
+    //         light: grey[200],
+    //         main: grey[500],
+    //         dark: grey[700],
+    //         contrastText: "#fff"
+    //     },
+	// 	amber: {
+	// 		light: amber[200],
+    //         main: amber[400],
+    //         dark: amber[500],
+    //         contrastText: "#000"
+	// 	}
+    // }
+	palette: {
         primary: {
-            light: blue[300],
-            main: blue[500],
-            dark: blue[700],
-            contrastText: "#fff"
+            light: grey[200],
+            main: grey[300],
+            dark: grey[700],
+            contrastText: "#000"
         },
         secondary: {
             light: grey[200],
@@ -23,10 +43,10 @@ const theme = createTheme({
             contrastText: "#fff"
         },
 		amber: {
-			light: amber[200],
-            main: amber[400],
-            dark: amber[500],
-            contrastText: "#000"
+			light: grey[400],
+            main: grey[400],
+            dark: grey[700],
+            contrastText: "#fff"
 		}
     }
 });

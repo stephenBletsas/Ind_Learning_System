@@ -20,6 +20,7 @@ const MessageBox = styled(Paper)(({ theme, isAss }) => ({
     ...theme.typography.body1,
     fontSize: '14px',
     lineHeight: 2,
+    color: theme.palette.primary.contrastText
 }));
 
 const MessageContainer = styled('div')(({ theme }) => ({
