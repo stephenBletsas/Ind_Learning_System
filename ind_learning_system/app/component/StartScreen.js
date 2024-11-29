@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import UNSWImage from '../../assets/unsw.png';
-import DemoImage from '../../assets/demo.jpeg';
+import DemoImage from '../../assets/demo_2.jpeg';
 import Image from 'next/image';
 
 const WelcomeBox = styled(Paper)(({ theme }) => ({
